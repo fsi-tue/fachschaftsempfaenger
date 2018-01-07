@@ -1,0 +1,7 @@
+django
+requests
+lxml
+re
+git+https://github.com/Trybnetic/stuweparser.git
+icalendar
+pytz
