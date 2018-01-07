@@ -1,0 +1,11 @@
+{% extends 'tiles/tile.html' %}
+
+{% block content %}
+<div class="col-item-header">
+  <i class="fa fa-cutlery"></i>Mensa Morgenstelle
+</div>
+
+{% for meal in meals %}
+  {{meal}}<br/>
+{% endfor %}
+{% endblock %}

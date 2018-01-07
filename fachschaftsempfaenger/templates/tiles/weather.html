@@ -1,0 +1,24 @@
+{% extends 'tiles/tile.html' %}
+
+{% block content %}
+<div class="col-item-header" id="weather-header">
+          <i class="fa fa-sun-o"></i>Wetter
+</div>
+<div>
+    <div>&nbsp;{{weather}}</div>
+    <div>&nbsp;{{rain}}</div>
+    <div>&nbsp;{{rain_type}}</div>
+    <div>&nbsp;{{clouds}}</div>
+    <div>&nbsp;{{humidity}}</div>
+    <div>&nbsp;{{pressure}}&nbsp;hPa</div>
+</div>
+<div id="temperature">
+    <div>
+        <span>{{temperature}}</span>{{temperature_unit}}
+    </div>
+    <div>
+        <span>{{wind_strength}}</span> km/h
+        <strong>{{wind_direction}}</strong>
+    </div>
+</div>
+{% endblock %}

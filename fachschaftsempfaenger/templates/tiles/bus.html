@@ -1,0 +1,28 @@
+{% extends 'tiles/tile.html' %}
+
+{% block content %}
+<div class="col-item-header" id="bus-header">
+  <i class="fa fa-bus"></i>Wann kommt der Bus? <!-- Was spielt der Bass? -->
+</div>
+<div>
+    <table>
+        {% if events %}
+		{% for event in events %}
+        <tr>
+            <td>
+                <strong>{{event.0}}</strong>
+            </td>
+            <td align="right" width="42">
+                <strong>{{event.1}} &nbsp;</strong>
+            </td>
+            <td>{{event.2}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <div>
+            <i>Keine Verkehrsmittel</i>
+        </div>
+        {% endif%}
+    </table>
+</div>
+{% endblock %}

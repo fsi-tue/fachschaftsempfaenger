@@ -1,0 +1,36 @@
+{% extends 'tiles/tile.html' %}
+
+{% load custom_tags %}
+{% block content %}
+    <div class="col-item-header">
+      Vorhersage
+    </div>
+
+    {% load tz %}
+    {% timezone "UTC" %}
+    {% for data in data_array %}
+        <table style="width:100%; text-align: center; margin-top: 10px">
+            <tr style="text-align:left;">
+                <td colspan="2">
+                    <b style="font-size: 1.5em; ">{{ data.0.dt|date_format|utc|date:'d.m.' }}</b>
+                </td>
+            </tr>
+            <tr>
+                {% for d in data %}
+                    <td>{{ d.dt|date_format|date:'H:i' }}</td>
+                {% endfor %}
+            </tr>
+            <tr style="font-size: 1.2em; ">
+                {% for d in data %}
+                    <td>{{ d.main.temp_min|floatformat }} °C</td>
+                {% endfor %}
+            </tr>
+            <tr style="font-size: 2em;">
+                {% for d in data %}
+                    <td><i class="wi wi-2x wi-owm-{{ d.weather.0.id }}"></i></td>
+                {% endfor %}
+            </tr>
+        </table>
+    {% endfor %}
+    {% endtimezone %}
+{% endblock %}

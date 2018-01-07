@@ -23,6 +23,14 @@ body {
   background-position: center;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 #header {
   height: 80px;
   line-height: 80px;

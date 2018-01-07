@@ -2,102 +2,94 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <script src="https://use.fontawesome.com/eb448271e0.js"></script>
 
-    <title>Tiling-Prototyp</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <script src="{% static "js/clock.js" %}"></script>
+
+    <title>Fachschaftsempfänger</title>
   </head>
 
-  <body>
+  <body onload="startTime()">
     <div id="header">
       <div id="header-left" class="headerbox">
-        <img src="fsilogo.png" alt="Logo FSI" />&nbsp;
+        <img src="{% static "img/fsilogo.png" %}" alt="Logo FSI" />&nbsp;
         <h2>Fachschaftsempfänger&reg;</h2></div>
       <div id="header-right" class="headerbox">
-        <h2 id="date">Montag, 7. November 2017<span id="time">13:37:42 Uhr</span></h2>
+        <h2>
+          <span id="date"></span>
+          <span id="time"></span>
+        </h2>
       </div>
     </div> <!-- /header -->
     <div id="col-container">
-    <!-- Spalte 1 -->
-    <div class="col">
-      <div id="mensa">
-      <div class="col-item height4 purple" >
-        <div class="col-item-header">
-          <i class="fa fa-cutlery"></i>Mensa Morgenstelle</div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-      </div> 
-    </div><!-- /col -->
-      <!-- Spalte 2 -->
-    <div class="col">
-      <div id="weather">
-      <div class="col-item height2 green">
-        <div class="col-item-header">
-          <i class="fa fa-sun-o"></i>Wetter
-        </div>
-        Eintrag 1
-      </div>
-    </div>
-      <div class="col-item height1">
-        <div class="col-item-header">
-          Titel für Eintrag
-        </div>
-        Eintrag 2
-      </div>
-      <div class="col-item height1">
-        <div class="col-item-header">
-          Titel für Eintrag
-        </div>
-        Eintrag 3
-      </div>
-    </div> <!-- /col -->
-    <!-- Spalte 3 -->
-    <div class="col">
-      <div id="bus">
-      <div class="col-item height3 orange">
-        <div class="col-item-header" >
-          <i class="fa fa-bus"></i>Wann kommt der Bus? <!-- Was spielt der Bass? -->
-        </div>
-        Eintrag 1
-      </div>
-    </div>
-
-      <div class="col-item height1">
-        <div class="col-item-header">
-          Titel für Eintrag
-        </div>
-        Eintrag 2
-      </div>
-    </div> <!-- /col -->
-    <!-- Spalte 4 -->
-    <div class="col">
-      <div id="sitzung">
-      <div class="col-item height1 red" >
-        <div class="col-item-header">
-          <i class="fa fa-clock-o"></i>Nächste Fachschaftssitzung
-        </div>
-        Eintrag 1
-      </div>
-    </div>
-      <div id="termine">
-      <div class="col-item height1 red">
-        <div class="col-item-header">
-          <i class="fa fa-calendar"></i>Fachschaftstermine
-        </div>
-        Eintrag 2
-      </div>
-    </div>
-      <div id="flyer">
-      <div class="col-item height2 blue">
-        <div class="col-item-header">
-          <i class="fa fa-bullhorn"></i>Zur Party? Zur Party!
-        </div>
-        <img class="flyer" src="chf.png" />
-      </div>
-    </div>
-  </div> <!-- /col -->
+      <!-- Spalte 1 -->
+      <div class="col">
+        <div id="mensa"></div>
+      </div><!-- /col -->
+        <!-- Spalte 2 -->
+      <div class="col">
+        <div id="weather"></div>
+        <div id="forecast"></div>
+      </div> <!-- /col -->
+      <!-- Spalte 3 -->
+      <div class="col">
+        <div id="bus"></div>
+      </div> <!-- /col -->
+      <!-- Spalte 4 -->
+      <div class="col">
+        <div id="sitzung"></div>
+        <div id="calendar"></div>
+      </div> <!-- /col -->
   </div> <!-- /col-container -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+     (function() {
+         var tiles = [
+           {id: 'mensa', url: '/tiles/mensa.html', timeout: 4320, height: 4, color: 'purple'},
+           {id: 'weather', url: '/tiles/weather.html', timeout: 100, height: 1, color: 'green'},
+           {id: 'forecast', url: '/tiles/forecast.html', timeout: 120, height: 2, color: 'green'},
+           {id: 'bus', url: '/tiles/bus.html', timeout: 30, height: 2, color: 'orange'},
+           {id: 'sitzung', url: '/tiles/sitzung.html', timeout: 5000, height: 1, color: 'red'},
+           {id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, height: 2, color: 'red'},
+
+
+
+//             , {id: 'regenradar', url: '/tiles/rainradar.html', timeout: 1800, color: 'green'}
+//             , {id: 'calendar', url: '/tiles/calendar.html', timeout: 400, color: 'red'}
+//             , {id: 'transport', url: '/tiles/transport.html', timeout: 30, color: 'blue'}
+         ];
+
+         for (var tileIndex in tiles) {
+             (function (tile) {
+                 try {
+                     function loadTile() {
+                         try {
+                             $('#'+tile.id).load(tile.url, function () {
+                                 $(this).find('.col-item').addClass(tile.color);
+                                 $(this).find('.col-item').addClass('height'+tile.height);
+                             });
+                         } catch (err) {
+                             if(console && console.warn && tile) {
+                                 console.warn("Failed updating tile '"+tile.id+"'.");
+                             }
+                         }
+                     }
+                     loadTile();
+                     if (tile.timeout !== undefined) {
+                         setInterval(loadTile, tile.timeout * 1000);
+                     }
+                 } catch (err) {
+                     if(console && console.warn && tile) {
+                         console.warn("Failed setting up tile '"+tile.id+"'.");
+                     }
+                 }
+             })(tiles[tileIndex]);
+         }
+     })();
+    </script>
 </body>
 </html>
