@@ -122,23 +122,23 @@ body {
 }
 
 /* color assignment for different box types */
-#mensa {
+.purple {
   background-color: #8e44ad;
 }
 
-#flyer {
+.blue {
   background-color: #2e86c1;
 }
 
-#bus {
+.orange {
   background-color: #f39c12;
 }
 
-#weather {
+.green {
   background-color: #27ae60;
 }
 
-#termine, #sitzung {
+.red {
   background-color: #cb4335;
 }
 
