@@ -31,6 +31,25 @@ a:hover {
 	text-decoration: underline;
 }
 
+#bus table {
+  width: 100%;
+}
+
+#bus tr td:nth-child(1){ /* first column of every table row */
+  text-align: right;
+  width: 30%;
+}
+
+#bus tr td:nth-child(2){
+  min-width: 50px;
+  width: 20%;
+  text-align: right;
+}
+
+#bus tr td:nth-child(3){
+  width: 50%;
+}
+
 #header {
   height: 80px;
   line-height: 80px;
@@ -61,12 +80,16 @@ a:hover {
   display: inline;
 }
 
+#header-center{
+  text-align: center;
+}
+
 #header-right {
   text-align: right;
 }
 
 .headerbox {
-  width: 49.5%;
+  width: 33%;
   display: inline-block;
 }
 
