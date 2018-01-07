@@ -1,0 +1,194 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, h1, h2, h3, p,img, ol, ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+
+/* own declarations */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #02224a 0%,#023868 50%,#034f8d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#header {
+  height: 80px;
+  line-height: 80px;
+  padding: 10px;
+  margin: 0px 20px 0px 20px;
+  font-family: "Lato", sans-serif;
+  color: #ffffff;
+}
+
+#header:after {
+  clear: both;
+}
+
+#header-left {
+  text-align: left;
+}
+
+#header-left img {
+  position: absolute;
+}
+
+#header-left h2 {
+  position: absolute;
+  left: 540px;
+}
+
+#header h2 {
+  display: inline;
+}
+
+#header-right {
+  text-align: right;
+}
+
+.headerbox {
+  width: 49.5%;
+  display: inline-block;
+}
+
+.col {
+  float: left;
+  width: 465px; /* for four column layout */
+}
+
+.height1 {
+  height: 220px;
+}
+
+.height2 {
+  height: 450px;
+}
+
+.height3 {
+  height: 680px;
+}
+
+.height4 {
+  height: 910px;
+}
+
+#col-container {
+  width: 1900px;
+  height: auto;
+  margin-left: 20px;
+}
+
+.col-item {
+  margin: 10px 5px 10px 5px;
+  padding: 5px 10px 5px 10px;
+  box-sizing: border-box; /* thank god for this property */
+  background-color: #cccccc;
+  color: #ffffff;
+  border-radius: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.2em;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.flyer {
+  display: block;
+  margin: auto;
+  max-height: 80%;
+}
+
+.col-item-header {
+  text-align: center;
+  font-weight: bold;
+  height: 50px;
+  line-height: 50px;
+  padding: 5px;
+}
+
+.col-item-header > i {
+  /* this allows us to style the fontawesome icons */
+  padding-right: 10px;
+  font-size: 1.2em;
+}
+
+/* color assignment for different box types */
+#mensa {
+  background-color: #8e44ad;
+}
+
+#flyer {
+  background-color: #2e86c1;
+}
+
+#bus {
+  background-color: #f39c12;
+}
+
+#weather {
+  background-color: #27ae60;
+}
+
+#termine, #sitzung {
+  background-color: #cb4335;
+}
+
+
+@media screen and (max-width:1900px) {
+
+  body {
+    background: linear-gradient(to right, #033267 0%,#035191 50%,#034783 51%,#0573c7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-repeat: repeat-y;
+  }
+
+  #col-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  #header-left h2 {
+    visibility: hidden;
+  }
+
+  #header-left img {
+    position: static;
+  }
+
+  .headerbox {
+    width: 100%;
+    display: block;
+    text-align: center !important;
+  }
+
+  .col {
+    width: 90%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .col-item {
+    margin: 10px;
+    /* height: auto !important; */
+  }
+}
