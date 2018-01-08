@@ -2,15 +2,15 @@
 
 {% block content %}
 <div class="col-item-header" id="weather-header">
-          <i class="fa fa-sun-o"></i>Wetter
+          <i class="fa fa-cloud"></i>Wetter
 </div>
-<div>
-    <div>&nbsp;{{weather}}</div>
-    <div>&nbsp;{{rain}}</div>
-    <div>&nbsp;{{rain_type}}</div>
-    <div>&nbsp;{{clouds}}</div>
-    <div>&nbsp;{{humidity}}</div>
-    <div>&nbsp;{{pressure}}&nbsp;hPa</div>
+<div id="weathericons">
+    <div class="icon-weather">&nbsp;{{weather}}</div>
+    <div class="icon-rain">&nbsp;{{rain}}</div>
+    <div class="icon-raintype">&nbsp;{{rain_type}}</div>
+    <div class="icon-clouds">&nbsp;{{clouds}}</div>
+    <div class="icon-humidity">&nbsp;{{humidity}}</div>
+    <div class="icon-pressure">&nbsp;{{pressure}}&nbsp;hPa</div>
 </div>
 <div id="temperature">
     <div>

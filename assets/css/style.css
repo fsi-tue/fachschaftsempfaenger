@@ -18,7 +18,7 @@ html, body {
 }
 
 body {
-  background: linear-gradient(135deg, #02224a 0%,#023868 50%,#034f8d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: radial-gradient(ellipse at center, #113fc6 0%,#001c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -30,6 +30,8 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+
+/* declarations for bus table */
 
 #bus table {
   width: 100%;
@@ -48,6 +50,73 @@ a:hover {
 
 #bus tr td:nth-child(3){
   width: 50%;
+}
+
+/* declarations for weather tile */
+
+#weathericons { /* humidity, rain etc. */
+  text-align: left;
+  width: 49%;
+  padding-left: 10px;
+  float: left;
+  font-size: 0.9em;
+}
+
+#weathericons > div {
+  vertical-align: bottom;
+}
+
+#weathericons > div:before {
+  content: " ";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px 0 0;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.icon-weather:before {
+  background: url(../img/icon-weather.svg);
+}
+
+.icon-rain:before {
+  background: url(../img/icon-rain.svg);
+}
+
+.icon-raintype:before {
+  background: url(../img/icon-raintype.svg);
+}
+
+.icon-clouds:before {
+  background: url(../img/icon-clouds.svg);
+}
+
+.icon-humidity:before {
+  background: url(../img/icon-humidity.svg);
+}
+
+.icon-pressure:before {
+  background: url(../img/icon-pressure.svg);
+}
+
+#temperature {
+  text-align: right;
+  float: right;
+  width: 48%;
+}
+
+#temperature div { /* temperature and wind display */
+  font-size: 1.5em;
+  padding-right: 10px;
+}
+
+#temperature:after {
+  clear: both;
+}
+
+#footer {
+  font-size: 0.8em;
 }
 
 #header {
@@ -82,6 +151,7 @@ a:hover {
 
 #header-center{
   text-align: center;
+  font-size: 1.6em;
 }
 
 #header-right {
@@ -172,6 +242,7 @@ a:hover {
 .red {
   background-color: #cb4335;
 }
+
 
 
 @media screen and (max-width:1900px) {
