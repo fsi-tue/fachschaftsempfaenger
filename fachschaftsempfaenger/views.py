@@ -2,11 +2,13 @@ import datetime
 import json
 
 from django.shortcuts import render
+from django.utils import timezone
 from django.http import HttpResponse
 from django.template import loader
 
 import requests
 
+from fachschaftsempfaenger.models import Menu
 from . import calendar
 from . import weather
 from . import mensa
@@ -60,15 +62,24 @@ def weather_tile(request, use_kelvin=False):
     ctx['link'] = 'https://wetteronline.de/wetter-aktuell/tuebingen'
     return render(request, 'tiles/weather.html', ctx)
 
+
 def mensa_tile(request):
     mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
     date_string, meals = mensa.load_data(mensa_website)
 
     context = dict(meals=meals,
-                   link=mensa_website)
+                   link=mensa_website, date=date_string)
 
     return render(request, 'tiles/mensa.html', context)
 
+
+def foodtruck_tile(request):
+    # get date and look for an appropriate menu. we look 6 days into the future and check if there is a menu present
+    menu = Menu.objects.filter(date__gte=timezone.now(), date__lte=timezone.now() + datetime.timedelta(days=6))
+
+    context = dict(menu=menu)
+
+    return render(request, 'tiles/foodtruck.html', context)
 
 def index(request):
     return render(request, 'index.html')
