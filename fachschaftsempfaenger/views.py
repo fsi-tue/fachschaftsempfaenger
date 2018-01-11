@@ -8,7 +8,6 @@ from django.template import loader
 
 import requests
 
-from fachschaftsempfaenger.models import Menu
 from . import calendar
 from . import weather
 from . import mensa
@@ -72,14 +71,6 @@ def mensa_tile(request):
 
     return render(request, 'tiles/mensa.html', context)
 
-
-def foodtruck_tile(request):
-    # get date and look for an appropriate menu. we look 6 days into the future and check if there is a menu present
-    menu = Menu.objects.filter(date__gte=timezone.now(), date__lte=timezone.now() + datetime.timedelta(days=6))
-
-    context = dict(menu=menu)
-
-    return render(request, 'tiles/foodtruck.html', context)
 
 def index(request):
     return render(request, 'index.html')
