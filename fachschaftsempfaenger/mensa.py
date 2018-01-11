@@ -16,14 +16,6 @@ def load_data(url):
                  in menue_table
                  if food is not None]
 
-        # TODO: use css for ending a menue title
-        # line_width = 35
-        #meals = [meal[0:line_width] + "..." if len(meal) > line_width else meal
-                 #for meal in meals]
-
-        # meals = [meal for meal in meals]
-        # print(meals)
-
         day = parser.parse_current_day(html)
         date = parser.parse_current_date(html)
 
