@@ -2,6 +2,7 @@ import datetime
 import json
 
 from django.shortcuts import render
+from django.utils import timezone
 from django.http import HttpResponse
 from django.template import loader
 
@@ -60,12 +61,13 @@ def weather_tile(request, use_kelvin=False):
     ctx['link'] = 'https://wetteronline.de/wetter-aktuell/tuebingen'
     return render(request, 'tiles/weather.html', ctx)
 
+
 def mensa_tile(request):
     mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
     date_string, meals = mensa.load_data(mensa_website)
 
     context = dict(meals=meals,
-                   link=mensa_website)
+                   link=mensa_website, date=date_string)
 
     return render(request, 'tiles/mensa.html', context)
 
