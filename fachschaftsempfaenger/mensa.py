@@ -1,3 +1,11 @@
+"""
+mensa.py
+--------
+
+``mensa.py`` contains the functionality to get the current menues from the
+website of student services in Tuebingen.
+
+"""
 import logging
 
 import requests
@@ -8,6 +16,16 @@ from stuweparser import crawler, parser
 
 
 def load_data(url):
+    """
+    Get the next departures from a certain bus stop.
+
+    - **parameters**, **types**, **return** and **return types**::
+        :param url: url to the website of the mensa which should be shown.
+        :type url: str
+        :return: the date which is loaded and a list of the meals or an
+                 information that the mensa is closed on this day.
+        :rtype: tuple of str and list of str
+    """
     try:
         html = crawler.crawl(url)
         menue_table = parser.parse_menues(html)
