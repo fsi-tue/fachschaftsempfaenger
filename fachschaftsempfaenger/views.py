@@ -23,9 +23,11 @@ def calendar_tile(request):
 
 
 def bus_tile(request):
-    events = bus.get_departures('Sand Drosselweg')
+    stopid = 25207
+    url = 'https://www.swtue.de/abfahrt.html?halt={}'.format(stopid)
+    events = bus.get_departures(stopid)
 
-    return render(request, 'tiles/bus.html', dict(events=events))
+    return render(request, 'tiles/bus.html', dict(events=events, link=url))
 
 
 def forecast_tile(request):
