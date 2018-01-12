@@ -1,3 +1,11 @@
+"""
+calendar.py
+-----------
+
+``calendar.py`` contains the functionality to show upcomming
+events of the student union of Computer Science in Tuebingen.
+"""
+
 from icalendar import Calendar
 import pytz
 import ssl

@@ -1,3 +1,9 @@
+"""
+weather.py
+----------
+
+``weather.py`` contains the functionality to get current weather details.
+"""
 import requests
 from lxml import html
 
