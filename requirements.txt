@@ -1,7 +1,6 @@
 django
 requests
 lxml
-re
-git+https://github.com/Trybnetic/stuweparser.git
+git+http://github.com/Trybnetic/stuweparser/#egg=stuweparser
 icalendar
 pytz
