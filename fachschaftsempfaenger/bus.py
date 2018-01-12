@@ -23,13 +23,9 @@ def get_departures(stop):
                            departs, the busline and the destination of the bus.
         :rtype: list of tuple
     """
-    stations = {
-        'Sand Drosselweg': 25207
-
-    }
 
     url = ('https://www.swtue.de/abfahrt.html?halt='
-           '%d' % stations[stop])
+           '%d' % stop)
 
     page = requests.get(url)
     tree = html.fromstring(page.content)
