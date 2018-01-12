@@ -17,6 +17,11 @@ html, body {
   height: 100%;
 }
 
+/* slightly stripe all tables */
+table tr:nth-child(2n){
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 body {
   background: radial-gradient(ellipse at center, #113fc6 0%,#001c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   background-repeat: no-repeat;
@@ -50,6 +55,27 @@ a:hover {
 
 #bus tr td:nth-child(3){
   width: 50%;
+}
+
+/* declarations for food tile */
+
+#mensa {
+  overflow: hidden;
+}
+
+.foodtable tr td:first-child {
+  width: 70%;
+}
+
+.foodtable tr td:nth-child(2) {
+  width: 30%;
+  text-align: center;
+}
+
+.food_date {
+  font-weight: bold;
+  text-align: center;
+  display: block;
 }
 
 /* declarations for weather tile */
