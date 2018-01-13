@@ -26,5 +26,5 @@ License
 -------
 
 *Fachschaftsempfaenger* is licensed under the MIT license, for more information
-have a look on our `LICENSE.txt
+have a look at our `LICENSE.txt
 <https://github.com/fsi-tue/fachschaftsempfaenger/blob/master/LICENSE.txt>`_

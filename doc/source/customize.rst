@@ -4,13 +4,13 @@ How to customize
 We are delighted that you are interested in running a customized version of our
 Django app in your student union. Please first check out `our license
 <https://github.com/fsi-tue/fachschaftsempfaenger/blob/master/LICENSE.txt>`_
-whether this project fit your needs. If your have questions, feel free to
+whether this project fits your needs. If your have questions, feel free to
 :ref:`contact us <contact>`.
 
 Customize the submodules
 ------------------------
 
-The subodules listed in :doc:`Submodules <submodules>` are all designed to fit
+The submodules listed in :doc:`Submodules <submodules>` are all designed to fit
 the needs of the student union of Computer Science in Tuebingen. Therefore, you
 have to rewrite these submodules for your own needs. If you stay at the API
 described in the :doc:`Submodules section of the documentation <submodules>`,
