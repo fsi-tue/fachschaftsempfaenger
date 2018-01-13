@@ -1,16 +1,31 @@
+"""
+bus.py
+------
+
+``bus.py`` contains the functionality to show upcoming
+departures of buses.
+
+"""
+
 import requests
 from lxml import html
 from datetime import datetime, timedelta
 
 
 def get_departures(stop):
-    stations = {
-        'Sand Drosselweg': 25207
+    """
+    Get the next departures from a certain bus stop.
 
-    }
+    - **parameters**, **types**, **return** and **return types**::
+        :param stop: the busstop id of swtue
+        :type stop: int
+        :return: each departure consists of the time till the bus
+                           departs, the bus route and the destination of the bus.
+        :rtype: list of tuple
+    """
 
     url = ('https://www.swtue.de/abfahrt.html?halt='
-           '%d' % stations[stop])
+           '%d' % stop)
 
     page = requests.get(url)
     tree = html.fromstring(page.content)
