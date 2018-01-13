@@ -96,5 +96,9 @@ def foodtruck_tile(request):
     return render(request, 'tiles/foodtruck.html', context)
 
 
+def footer_tile(request):
+    return render(request, 'tiles/footer.html')
+
+
 def index(request):
     return render(request, 'index.html')
