@@ -17,7 +17,7 @@ from stuweparser import crawler, parser
 
 def load_data(url):
     """
-    Get the next departures from a certain bus stop.
+    Get today's meals from a mensa of the student services in Tuebingen.
 
     - **parameters**, **types**, **return** and **return types**::
         :param url: url to the website of the mensa which should be shown.
