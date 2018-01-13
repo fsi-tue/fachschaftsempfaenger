@@ -2,7 +2,7 @@
 bus.py
 ------
 
-``bus.py`` contains the functionality to show upcomming
+``bus.py`` contains the functionality to show upcoming
 departures of buses.
 
 """
@@ -19,8 +19,8 @@ def get_departures(stop):
     - **parameters**, **types**, **return** and **return types**::
         :param stop: the busstop id of swtue
         :type stop: int
-        :return: each departure consist of the time till the bus
-                           departs, the busline and the destination of the bus.
+        :return: each departure consists of the time till the bus
+                           departs, the bus route and the destination of the bus.
         :rtype: list of tuple
     """
 
