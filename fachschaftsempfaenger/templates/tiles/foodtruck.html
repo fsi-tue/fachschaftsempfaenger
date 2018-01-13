@@ -4,7 +4,7 @@
 <div class="col-item-header">
   <i class="fa fa-truck"></i>Foodtruck
 </div>
-    {% if menu %}
+    {% if menu and menu_date %}
         <span class="food_date">Mittwoch, {{ menu_date }}</span>
         <table class="foodtable">
         {%  for item in menu %}
@@ -19,6 +19,5 @@
     {% else %}
         Kein Speiseplan verfügbar
     {% endif %}
-    </table>
 
 {% endblock %}
