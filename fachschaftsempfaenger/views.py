@@ -1,6 +1,7 @@
 import datetime
 import json
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.utils import timezone
 from django.http import HttpResponse
@@ -77,11 +78,16 @@ def mensa_tile(request):
 
 def foodtruck_tile(request):
     # get date and look for an appropriate menu for the current week.
-    menu_date = Menu.objects.get(date__gte=timezone.now(), date__lte=timezone.now() + datetime.timedelta(days=6)).date
-    menu = Food.objects.filter(menu_item__date__gte=timezone.now(),
+    try:
+        menu_date = Menu.objects.get(date__gte=timezone.now(), date__lte=timezone.now() + datetime.timedelta(days=6)).date
+        menu = Food.objects.filter(menu_item__date__gte=timezone.now(),
                                menu_item__date__lte=timezone.now() + datetime.timedelta(days=6))
 
-    context = dict(menu=menu, menu_date=menu_date)
+        context = dict(menu=menu, menu_date=menu_date)
+
+    except ObjectDoesNotExist:
+        print("No appropriate menu items or menus found!")
+        context = dict(menu=False, menu_date=False)
 
     return render(request, 'tiles/foodtruck.html', context)
 
