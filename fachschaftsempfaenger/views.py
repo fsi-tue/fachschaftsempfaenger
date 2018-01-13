@@ -81,13 +81,13 @@ def foodtruck_tile(request):
     try:
         menu_date = Menu.objects.get(date__gte=timezone.now(), date__lte=timezone.now() + datetime.timedelta(days=6)).date
         menu = Food.objects.filter(menu_item__date__gte=timezone.now(),
-                               menu_item__date__lte=timezone.now() + datetime.timedelta(days=6))
+                                   menu_item__date__lte=timezone.now() + datetime.timedelta(days=6))
 
         context = dict(menu=menu, menu_date=menu_date)
 
     except ObjectDoesNotExist:
         print("No appropriate menu items or menus found!")
-        context = dict(menu=False, menu_date=False)
+        context = dict(menu=None)
 
     return render(request, 'tiles/foodtruck.html', context)
 
