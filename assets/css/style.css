@@ -59,7 +59,7 @@ a:hover {
 
 /* declarations for food tile */
 
-#mensa {
+#mensa, #foodtruck { /* cuts off content in case the tables get too long for the div height */
   overflow: hidden;
 }
 
