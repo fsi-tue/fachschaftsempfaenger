@@ -1,0 +1,24 @@
+{% extends 'tiles/tile.html' %}
+
+{% block content %}
+<div class="col-item-header">
+  <i class="fa fa-truck"></i>Foodtruck
+</div>
+    {% if menu %}
+        <span class="food_date">Mittwoch, {{ menu_date }}</span>
+        <table class="foodtable">
+        {%  for item in menu %}
+            <tr>
+            <td>{% if item.vegan %}<i class="fa fa-leaf" aria-hidden="true"></i>{% endif %}
+                {{ item.meal }}</td>
+            <td>{{ item.price }}&nbsp;&euro;</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <p style="font-size: 0.8em;text-align: center;"><i class="fa fa-leaf" aria-hidden="true"></i>=vegan</p>
+    {% else %}
+        Kein Speiseplan verfügbar
+    {% endif %}
+    </table>
+
+{% endblock %}
