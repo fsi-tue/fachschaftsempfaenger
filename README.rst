@@ -1,6 +1,5 @@
-=====================
-Fachschaftsempfaenger
-=====================
+
+.. image:: docs/source/_static/img/logo.png
 
 .. image:: https://img.shields.io/github/license/fsi-tue/fachschaftsempfaenger.svg
     :target: https://github.com/fsi-tue/fachschaftsempfaenger/blob/master/LICENSE.txt
