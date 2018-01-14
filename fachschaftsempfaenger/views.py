@@ -68,10 +68,14 @@ def weather_tile(request, use_kelvin=False):
 
 def mensa_tile(request):
     mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
-    date_string, meals = mensa.load_data(mensa_website)
 
-    context = dict(meals=meals,
-                   link=mensa_website, date=date_string)
+    try:
+        date_string, meals = mensa.load_data(mensa_website)
+        context = dict(meals=meals,
+                       link=mensa_website, date=date_string)
+    except BaseException:
+        print("Error retrieving the Mensa plan!")
+        context = dict(meals=None, link=mensa_website)
 
     return render(request, 'tiles/mensa.html', context)
 
