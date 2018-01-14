@@ -26,24 +26,16 @@ def load_data(url):
                  information that the mensa is closed on this day.
         :rtype: tuple of str and list of str
     """
-    try:
-        html = crawler.crawl(url)
-        menue_table = parser.parse_menues(html)
+    html = crawler.crawl(url)
+    menue_table = parser.parse_menues(html)
 
-        meals = [(food, student_price) for name, food, student_price, guest_price
-                 in menue_table
-                 if food is not None]
+    meals = [(food, student_price) for name, food, student_price, guest_price
+             in menue_table
+             if food is not None]
 
-        day = parser.parse_current_day(html)
-        date = parser.parse_current_date(html)
+    day = parser.parse_current_day(html)
+    date = parser.parse_current_date(html)
 
-        date_string = day + ", " + date
-        if not meals:
-            meals = ["Die Mensa hat heute leider geschlossen",]
+    date_string = day + ", " + date
 
-        return date_string, meals
-
-    except BaseException as e:
-        logger = logging.getLogger(__name__)
-        logger.info('Error retrieving the Mensa plan: {0}'.format(str(e)))
-        return []
+    return date_string, meals
