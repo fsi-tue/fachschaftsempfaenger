@@ -37,6 +37,7 @@ Quickstart
 4. Define a superuser to access the Django admin
 
 .. code-block:: bash
+
     python manage.py createsuperuser
 
 5. Start a local server:
