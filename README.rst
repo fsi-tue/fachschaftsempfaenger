@@ -30,14 +30,22 @@ Quickstart
 .. code-block:: bash
 
     python manage.py migrate
+    python manage.py makemigrations fachschaftsempfaenger
+    python manage.py migrate fachschaftsempfaenger
 
-4. Start a local server:
+
+4. Define a superuser to access the Django admin
+
+.. code-block:: bash
+    python manage.py createsuperuser
+
+5. Start a local server:
 
 .. code-block:: bash
 
     python manage.py runserver
 
-5. Open a browser and go to http://127.0.0.1:8000/
+6. Open a browser and go to http://127.0.0.1:8000/
 
 Documentation
 =============
