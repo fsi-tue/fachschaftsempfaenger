@@ -10,6 +10,5 @@ urlpatterns = [
     url(r'^tiles/weather\.html$', views.weather_tile),
     url(r'^tiles/mensa\.html$', views.mensa_tile),
     url(r'^tiles/foodtruck\.html$', views.foodtruck_tile),
-    url(r'^tiles/footer\.html$', views.footer_tile),
     url(r'^$', views.index),
 ]
