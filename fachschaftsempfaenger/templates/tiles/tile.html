@@ -1,6 +1,8 @@
+{% if not hidden %}
 <a href="{{link|default:"#"}}">
   <div class="col-item">
     {% block content %}
     {% endblock %}
   </div>
 </a>
+{% endif %}
