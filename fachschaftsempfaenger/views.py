@@ -88,7 +88,7 @@ def foodtruck_tile(request):
     """
     try:
         menu_date = Menu.objects.get(date__gte=timezone.now(),
-                                     date__lte=timezone.now() + datetime.timedelta(days=6)).date
+                                     date__lte=timezone.now() + datetime.timedelta(days=6)).date.strftime("%d.%m.%Y")
         menu = Food.objects.filter(menu_item__date__gte=timezone.now(),
                                    menu_item__date__lte=timezone.now() + datetime.timedelta(days=6))
 
