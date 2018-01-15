@@ -75,7 +75,7 @@ def mensa_tile(request):
                        link=mensa_website, date=date_string)
     except BaseException:
         print("Error retrieving the Mensa plan!")
-        context = dict(meals=None, link=mensa_website)
+        context = dict(meals=None, link=mensa_website, hidden=True)
 
     return render(request, 'tiles/mensa.html', context)
 
@@ -95,7 +95,7 @@ def foodtruck_tile(request):
         context = dict(menu=menu, menu_date=menu_date)
     except ObjectDoesNotExist:
         print("No appropriate food truck items or menus found for the current week!")
-        context = dict(menu=None)
+        context = dict(menu=None, hidden=True)
 
     return render(request, 'tiles/foodtruck.html', context)
 
