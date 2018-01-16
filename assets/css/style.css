@@ -349,4 +349,8 @@ a:visited {
     margin: 10px;
     /* height: auto !important; */
   }
+
+  #footer span { /* hides repo url in footer if on mobile */
+    visibility: hidden;
+  }
 }
