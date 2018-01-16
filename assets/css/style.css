@@ -289,6 +289,18 @@ a:visited {
   text-align: right;
 }
 
+#footer a {
+  color: #ffffff;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+#footer a:visited {
+  color: #eeeeee;
+}
+
 @media screen and (max-width:1900px) {
 
   body {
