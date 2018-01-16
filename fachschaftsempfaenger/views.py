@@ -14,6 +14,8 @@ from . import calendar
 from . import weather
 from . import mensa
 from . import bus
+from . import __author__ as author
+from . import __repository_url__ as repo_url
 
 
 def sitzung_tile(request):
@@ -101,4 +103,12 @@ def foodtruck_tile(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    """
+    The tiles that are displayed on the main page are loaded via JQuery (see index.html file itself)
+    Additional data to be displayed (i.e. footer, overlays etc.) can be passed via the context.
+    """
+    copy = '2018 ' + author
+
+    context = dict(author=author, copyright=copy, repo_url=repo_url)
+
+    return render(request, 'index.html', context)
