@@ -36,8 +36,16 @@ a {
 	text-decoration: none;
 }
 
+i { /* font-awesome icons */
+  padding-right: 8px;
+}
+
 a:hover {
 	text-decoration: underline;
+}
+
+a:visited {
+  color: #ffffff;
 }
 
 /* declarations for bus table */
@@ -255,7 +263,6 @@ a:hover {
 
 .col-item-header > i {
   /* this allows us to style the fontawesome icons */
-  padding-right: 10px;
   font-size: 1.2em;
 }
 
@@ -280,7 +287,30 @@ a:hover {
   background-color: #cb4335;
 }
 
+#footer {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9em;
+  background-color: rgba(0,0,0,0.2);
+  color: #ffffff;
+  position: fixed;
+  padding: 10px 20px 10px 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: right;
+}
 
+#footer a {
+  color: #ffffff;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+#footer a:visited {
+  color: #eeeeee;
+}
 
 @media screen and (max-width:1900px) {
 
@@ -329,5 +359,9 @@ a:hover {
   .col-item {
     margin: 10px;
     /* height: auto !important; */
+  }
+
+  #footer span { /* hides repo url in footer if on mobile */
+    visibility: hidden;
   }
 }
