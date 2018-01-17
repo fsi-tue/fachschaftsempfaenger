@@ -108,11 +108,11 @@ def advertisement_tile(request):
     """
     # Are there any messages to be displayed right now? If there are, select one at random.
     # Note that this query is quite expensive and could potentially slow the load time of this tile down.
-    try:
-        ad = Ad.objects.filter(start_date__gte=timezone.now()).order_by('?').first()
-        context = dict(ad=ad)
-    except ObjectDoesNotExist:
-        print("No ad  messages to be displayed!")
+    if Ad.objects.filter(start_date__gte=timezone.now()):
+        qs = Ad.objects.filter(start_date__gte=timezone.now()).order_by('?').first()
+        context = dict(ad=qs)
+    else:
+        print("There are no ad messages to be displayed right now!")
         context = dict(ad=None, hidden=True)
 
     return render(request, 'tiles/ad.html', context)
