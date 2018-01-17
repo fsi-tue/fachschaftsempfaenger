@@ -36,7 +36,7 @@ a {
 	text-decoration: none;
 }
 
-i { /* font-awesome icons */
+.col-item-header i, #footer i { /* font-awesome icons */
   padding-right: 8px;
 }
 
@@ -247,11 +247,14 @@ a:visited {
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.4);
 }
 
-.flyer {
-  display: block;
-  margin: auto;
-  max-height: 80%;
+
+#ad-image {
+  height: 80%;
+  background: no-repeat center;
+  -webkit-background-size: contain;
+  background-size: contain;
 }
+
 
 .col-item-header {
   text-align: center;
@@ -285,6 +288,10 @@ a:visited {
 
 .red {
   background-color: #cb4335;
+}
+
+.lightblue {
+  background-color: #6ab0de;
 }
 
 #footer {

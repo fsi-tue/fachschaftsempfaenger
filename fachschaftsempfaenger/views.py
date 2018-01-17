@@ -9,7 +9,7 @@ from django.template import loader
 
 import requests
 
-from fachschaftsempfaenger.models import Food, Menu
+from fachschaftsempfaenger.models import Food, Menu, Ad
 from . import calendar
 from . import weather
 from . import mensa
@@ -100,6 +100,22 @@ def foodtruck_tile(request):
         context = dict(menu=None, hidden=True)
 
     return render(request, 'tiles/foodtruck.html', context)
+
+
+def advertisement_tile(request):
+    """
+    Renders a custom advertisement message to be displayed.
+    """
+    # Are there any messages to be displayed right now? If there are, select one at random.
+    # Note that this query is quite expensive and could potentially slow the load time of this tile down.
+    try:
+        ad = Ad.objects.filter(start_date__gte=timezone.now()).order_by('?').first()
+        context = dict(ad=ad)
+    except ObjectDoesNotExist:
+        print("No ad  messages to be displayed!")
+        context = dict(ad=None, hidden=True)
+
+    return render(request, 'tiles/ad.html', context)
 
 
 def index(request):

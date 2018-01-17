@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.db import models
 from django.utils import timezone
 
@@ -35,3 +36,27 @@ class Menu(models.Model):
     def __str__(self):
         return "Speisekarte für " + str(self.date.strftime("%d.%m.%Y"))
 
+
+class Ad(models.Model):
+    """
+    Ability to display a custom message or an image to advertise for events of the student union (i.e. 'Clubhausfest',
+    'Sommerfest') or give other additional information.
+    It must have a start date and an optional end date, this allows for messages to only be displayed for a certain time.
+    """
+    start_date = models.DateField(verbose_name="Startdatum",
+                                  editable=True,
+                                  blank=False,
+                                  default=timezone.now)
+    end_date = models.DateField(verbose_name="Enddatum",
+                                editable=True,
+                                blank=False,
+                                default=timezone.now()+timedelta(days=7))
+    image = models.ImageField(verbose_name="Grafik", blank=False)
+    text = models.TextField(verbose_name="Nachricht", max_length=280, blank=True)
+
+    class Meta:
+        verbose_name = "Werbe-Nachricht"
+        verbose_name_plural = "Werbe-Nachrichten"
+
+    def __str__(self):
+        return self.image.name
