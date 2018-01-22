@@ -1,0 +1,19 @@
+{% extends 'tiles/tile.html' %}
+{% load static %}
+
+{% block content %}
+<div class="col-item-header">
+  <i class="fa fa-exclamation-circle"></i>Obacht!
+</div>
+    {% if advertisement.image %}
+        <div id="ad-image" style="background-image: url({{ ad.image.url }})">
+        </div>
+    {% endif %}
+    {% comment "not needed right now" %}
+    {% if ad.text %}
+        <div id="ad-text">
+        {{ ad.text}}
+        </div>
+    {% endif %}
+    {% endcomment %}
+{% endblock %}
