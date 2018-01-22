@@ -9,7 +9,7 @@ from django.template import loader
 
 import requests
 
-from fachschaftsempfaenger.models import Food, Menu, Ad
+from fachschaftsempfaenger.models import Food, Menu, Advertisement
 from . import calendar
 from . import weather
 from . import mensa
@@ -108,14 +108,14 @@ def advertisement_tile(request):
     """
     # Are there any messages to be displayed right now? If there are, select one at random.
     # Note that this query is quite expensive and could potentially slow the load time of this tile down.
-    if Ad.objects.filter(start_date__gte=timezone.now()):
-        qs = Ad.objects.filter(start_date__gte=timezone.now()).order_by('?').first()
-        context = dict(ad=qs)
+    if Advertisement.objects.filter(start_date__gte=timezone.now()):
+        qs = Advertisement.objects.filter(start_date__gte=timezone.now()).order_by('?').first()
+        context = dict(advertisement=qs)
     else:
-        print("There are no ad messages to be displayed right now!")
-        context = dict(ad=None, hidden=True)
+        print("There are no advertisement messages to be displayed right now!")
+        context = dict(advertisement=None, hidden=True)
 
-    return render(request, 'tiles/ad.html', context)
+    return render(request, 'tiles/advertisement.html', context)
 
 
 def index(request):

@@ -37,7 +37,7 @@ class Menu(models.Model):
         return "Speisekarte für " + str(self.date.strftime("%d.%m.%Y"))
 
 
-class Ad(models.Model):
+class Advertisement(models.Model):
     """
     Ability to display a custom message or an image to advertise for events of the student union (i.e. 'Clubhausfest',
     'Sommerfest') or give other additional information.
