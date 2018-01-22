@@ -42,6 +42,6 @@ def get_departures(stop):
         times.append(time.text_content().strip())
         lines.append(line.text_content().strip())
         line_destination = destination.text_content().strip()
-        destinations.append(line_destination.encode('utf-8', 'ignore'))
+        destinations.append(line_destination)
 
     return list(zip(times, lines, destinations))
