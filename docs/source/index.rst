@@ -14,6 +14,7 @@
 
    usage
    customize
+   administration
    submodules
    development
    about
