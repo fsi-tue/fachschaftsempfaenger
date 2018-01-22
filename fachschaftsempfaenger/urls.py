@@ -1,5 +1,7 @@
 from django.conf.urls import url
+from django.conf.urls.static import static
 
+from django.conf import settings
 from . import views
 
 urlpatterns = [
@@ -10,5 +12,6 @@ urlpatterns = [
     url(r'^tiles/weather\.html$', views.weather_tile),
     url(r'^tiles/mensa\.html$', views.mensa_tile),
     url(r'^tiles/foodtruck\.html$', views.foodtruck_tile),
+    url(r'^tiles/advertisement\.html$', views.advertisement_tile),
     url(r'^$', views.index),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
