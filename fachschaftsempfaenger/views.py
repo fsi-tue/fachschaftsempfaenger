@@ -23,7 +23,9 @@ def sitzung_tile(request):
 
 
 def calendar_tile(request):
-    return render(request, 'tiles/calendar.html')
+    events = calendar.get_first_n_items(10)
+    url = "www.fsi.uni-tuebingen.de"
+    return render(request, 'tiles/calendar.html', dict(events=events, link=url))
 
 
 def bus_tile(request):
