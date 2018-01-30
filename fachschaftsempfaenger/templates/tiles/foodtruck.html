@@ -11,7 +11,7 @@
             <tr>
             <td>{% if item.vegan %}<i class="fa fa-leaf" aria-hidden="true"></i>{% endif %}
                 {{ item.meal }}</td>
-            <td>{{ item.price }}&nbsp;&euro;</td>
+            <td>{{ item.price|floatformat:2 }}&nbsp;&euro;</td>
             </tr>
         {% endfor %}
         </table>
