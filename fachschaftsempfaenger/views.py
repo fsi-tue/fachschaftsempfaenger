@@ -23,8 +23,19 @@ def sitzung_tile(request):
 
 
 def calendar_tile(request):
-    events = calendar.get_first_n_items(10)
+    ical_url = "http://fachschaftsempfaenger.fsi.uni-tuebingen.de:5232/fsi/1928360d-1133-10b2-d238-b7335c4f778f/"
+
+    number_events = 6
+
+    try:
+        event_generator = calendar.events(ical_url)
+        events = [next(event_generator) for _ in range(number_events)]
+    except:
+        event_generator = calendar.events(ical_url)
+        events = list(event_generator)#[:number_events]
+
     url = "www.fsi.uni-tuebingen.de"
+
     return render(request, 'tiles/calendar.html', dict(events=events, link=url))
 
 
