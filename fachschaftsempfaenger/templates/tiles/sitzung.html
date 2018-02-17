@@ -3,7 +3,47 @@
 {% block content %}
 
 <div class="col-item-header" id="sitzung-header">
-          <i class="fa fa-clock-o"></i>Nächste Fachschaftssitzung
-        </div>
-Eintrag 1
+  <i class="fa fa-clock-o"></i>Nächste Fachschaftssitzung
+</div>
+<table>
+  <tr>
+    <td><div class="info-logo"></div></td>
+    <td><div class="kogni-logo"></div></td>
+  </tr>
+  <tr>
+    <td>
+      {% if info %}
+        {{ info.date }}
+      {% else %}
+        TBA
+      {% endif %}
+    </td>
+    <td>
+      {% if kogni %}
+        {{ kogni.date }}
+      {% else %}
+        TBA
+      {% endif %}
+    </td>
+  </tr>
+  {% if info or kogni %}
+    <tr>
+      <td>
+        {{ info.time }}
+      </td>
+      <td>
+        {{ kogni.time }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ info.location }}
+      </td>
+      <td>
+        {{ kogni.location }}
+      </td>
+    </tr>
+  {% endif %}
+</table>
+
 {% endblock %}
