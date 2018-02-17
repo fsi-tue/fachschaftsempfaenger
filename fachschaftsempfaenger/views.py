@@ -25,7 +25,7 @@ def sitzung_tile(request):
 def calendar_tile(request):
     ical_url = "http://fachschaftsempfaenger.fsi.uni-tuebingen.de:5232/fsi/1928360d-1133-10b2-d238-b7335c4f778f/"
 
-    number_events = 6
+    number_events = 5
 
     try:
         event_generator = calendar.events(ical_url)

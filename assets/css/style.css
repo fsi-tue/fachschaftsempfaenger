@@ -94,7 +94,31 @@ a:visited {
   display: block;
 }
 
+/* declarations for event calendar tile */
 
+
+#calendar table {
+  width: 100%;
+}
+
+#calendar tr td:nth-child(1){ /* first column of every table row */
+  text-align: right;
+  width: 25%;
+  line-height: 1em;
+}
+
+#calendar tr td:nth-child(2){
+  width: 75%;
+  text-align: left;
+}
+
+#calendar #date {
+  font-weight: bolder;
+}
+
+#calendar .small {
+  font-size: 0.8em;
+}
 
 
 /* declarations for weather tile */

@@ -8,7 +8,7 @@
       <table>
       {%  for date, time, title, location in events %}
           <tr>
-            <td>{{ date }}</td><td>{{ time }} Uhr</td><td>{{ title }}</td>
+              <td><span class="small">{{ date }}</span><br /><span class="small">{{ time }} Uhr</span></td><td>{{ title }}<br /><span class="small">{{ location }}</span></td>
           </tr>
       {% endfor %}
       </table>
