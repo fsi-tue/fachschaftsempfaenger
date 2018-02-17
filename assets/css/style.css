@@ -120,6 +120,18 @@ a:visited {
   font-size: 0.8em;
 }
 
+#sitzung img {
+  max-height: 50px;
+}
+
+#sitzung table {
+  width: 100%;
+}
+
+#sitzung td {
+  width: 50%;
+  text-align: center;
+}
 
 /* declarations for weather tile */
 
