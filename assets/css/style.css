@@ -73,11 +73,11 @@ a:visited {
 
 /* declarations for food tile */
 
-#mensa, #foodtruck { /* cuts off content in case the tables get too long for the div height */
+.col-item {
   overflow: hidden;
 }
 
-#foodtruck table {
+.foodtable {
   width: 100%;
 }
 
@@ -198,8 +198,20 @@ a:visited {
   clear: both;
 }
 
-#footer {
-  font-size: 0.8em;
+#footer-left {
+  text-align: left;
+}
+
+#footer-right {
+  text-align: right;
+}
+
+.footerbox {
+  width: 49%;
+  display: inline-block;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #header {
@@ -246,9 +258,14 @@ a:visited {
   display: inline-block;
 }
 
+#time {
+  font-size: 1.5em;
+  margin-left: 10px;
+}
+
 .col {
   float: left;
-  width: 465px; /* for four column layout */
+  width: 475px; /* for four column layout */
 }
 
 .height1 {
@@ -270,7 +287,7 @@ a:visited {
 #col-container {
   width: 1900px;
   height: auto;
-  margin-left: 20px;
+  margin: auto;
 }
 
 .col-item {
@@ -338,11 +355,10 @@ a:visited {
   background-color: rgba(0,0,0,0.2);
   color: #ffffff;
   position: fixed;
-  padding: 10px 20px 10px 10px;
+  /* padding: 10px 20px 10px 10px; */
   bottom: 0;
   left: 0;
   right: 0;
-  text-align: right;
 }
 
 #footer a {
@@ -360,7 +376,7 @@ a:visited {
 @media screen and (max-width:1900px) {
 
   body {
-    background: linear-gradient(to right, #033267 0%,#035191 50%,#034783 51%,#0573c7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to right, #606c88 0%,#3f4c6b 100%);
     background-repeat: repeat-y;
   }
 
@@ -372,12 +388,11 @@ a:visited {
   }
 
   #header {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     height: auto;
-    margin: auto;
-    margin-top: 20px;
+    margin: 20px auto auto;
   }
 
   #header-left h2 {
@@ -388,7 +403,7 @@ a:visited {
     position: static;
   }
 
-  .headerbox {
+  .headerbox, .footerbox {
     width: 100%;
     display: block;
     text-align: center !important;
@@ -404,6 +419,10 @@ a:visited {
   .col-item {
     margin: 10px;
     /* height: auto !important; */
+  }
+
+  #footer {
+    position: static;
   }
 
   #footer span { /* hides repo url in footer if on mobile */
