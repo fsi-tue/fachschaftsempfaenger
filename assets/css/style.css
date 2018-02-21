@@ -27,9 +27,11 @@ table td {
 }
 
 body {
-  background: radial-gradient(ellipse at center, #113fc6 0%,#001c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  /* background: radial-gradient(ellipse at center, #113fc6 0%,#001c6b 100%);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center; */
+
+  background: linear-gradient(to bottom, #606c88 0%,#3f4c6b 100%);
 }
 
 a {
@@ -275,7 +277,7 @@ a:visited {
   margin: 10px 5px 10px 5px;
   padding: 5px 10px 5px 10px;
   box-sizing: border-box; /* thank god for this property */
-  background-color: #cccccc;
+  background-color: #bdc3c7;
   color: #ffffff;
   border-radius: 10px;
   font-family: "Open Sans", sans-serif;
@@ -307,11 +309,11 @@ a:visited {
 
 /* color assignment for different box types */
 .purple {
-  background-color: #8e44ad;
+  background-color: #9b59b6;
 }
 
 .blue {
-  background-color: #2e86c1;
+  background-color: #3498db;
 }
 
 .orange {
@@ -323,11 +325,11 @@ a:visited {
 }
 
 .red {
-  background-color: #cb4335;
+  background-color: #c0392b;
 }
 
-.lightblue {
-  background-color: #6ab0de;
+.darkgrey {
+  background-color: #2c3e50;
 }
 
 #footer {
