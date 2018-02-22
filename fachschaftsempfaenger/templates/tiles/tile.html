@@ -1,8 +1,12 @@
 {% if not hidden %}
-<a href="{{link|default:"#"}}">
-  <div class="col-item">
+  {% if link %}
+    <a href="{{link|default:"#"}}">
+  {% endif %}
+  <div class="col-item {% if link %} hoverable {% endif %}">
     {% block content %}
     {% endblock %}
   </div>
-</a>
+  {% if link %}
+    </a>
+  {% endif %}
 {% endif %}

@@ -67,7 +67,8 @@
   </div> <!-- /col-container -->
     {% if copyright and repo_url %}
     <div id="footer">
-        &copy; {{ copyright }}&nbsp; &bullet; &nbsp; <i class="fa fa-code-fork"></i> <a href="{{ repo_url }}">Fork this on GitHub<span>: {{ repo_url }}</span></a>
+        <div id="footer-left" class="footerbox">TBA: to be announced&nbsp;|&nbsp;Eventuelle Encoding-Fehler der Bushaltestellen sind nicht unsere Schuld.</div>
+        <div id="footer-right" class="footerbox">&copy; {{ copyright }}&nbsp; &bullet; &nbsp; <i class="fa fa-code-fork"></i> <a href="{{ repo_url }}">Fork this on GitHub<span>: {{ repo_url }}</span></a></div>
     </div>
     {% endif %}
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -81,7 +82,7 @@
            {id: 'bus', url: '/tiles/bus.html', timeout: 30, height: 2, color: 'orange'},
            {id: 'sitzung', url: '/tiles/sitzung.html', timeout: 5000, height: 1, color: 'red'},
            {id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, height: 2, color: 'red'},
-           {id: 'advertisement', url: '/tiles/advertisement.html', timeout: 300, height: 2, color: 'lightblue'},
+           {id: 'advertisement', url: '/tiles/advertisement.html', timeout: 300, height: 2, color: 'darkgrey'},
 
 
 
