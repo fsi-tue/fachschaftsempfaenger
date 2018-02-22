@@ -311,6 +311,28 @@ a:visited {
 }
 
 
+#person-image {
+  float: left;
+  width: 30%;
+  -webkit-background-size: contain;
+  background-size: contain;
+  margin-right: 10px;
+}
+
+#person-text {
+  float: right;
+  width: 70%;
+  font-size: 0.9em;
+}
+
+#person-text:after {
+  clear: both;
+}
+
+#person-text table {
+  width: 100%;
+}
+
 #ad-image {
   height: 80%;
   background: no-repeat center;

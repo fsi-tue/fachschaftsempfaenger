@@ -9,7 +9,7 @@ from django.template import loader
 
 import requests
 
-from fachschaftsempfaenger.models import Food, Menu, Advertisement
+from fachschaftsempfaenger.models import Food, Menu, Advertisement, Fachschaft
 from . import calendar
 from . import weather
 from . import mensa
@@ -134,6 +134,23 @@ def advertisement_tile(request):
         context = dict(advertisement=None, hidden=True)
 
     return render(request, 'tiles/advertisement.html', context)
+
+
+def fachschaft_tile(request):
+    """
+    Randomly chooses a picture of a member of the student union
+    and displays it alongside their field of study etc.
+    """
+    # Select one of the people in the database at random and display their details.
+    # Note that this query is quite expensive and could potentially slow the load time of this tile down.
+    if Fachschaft.objects.exists():
+        qs = Fachschaft.objects.order_by('?').first()
+        context = dict(person=qs)
+    else:
+        print("No people of the student union found in database!")
+        context = dict(person=None, hidden=True)
+
+    return render(request, 'tiles/fachschaft.html', context)
 
 
 def index(request):

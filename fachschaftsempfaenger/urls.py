@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^tiles/mensa\.html$', views.mensa_tile),
     url(r'^tiles/foodtruck\.html$', views.foodtruck_tile),
     url(r'^tiles/advertisement\.html$', views.advertisement_tile),
+    url(r'^tiles/fachschaft\.html$', views.fachschaft_tile),
     url(r'^$', views.index),
 ]
