@@ -10,7 +10,7 @@
         </div>
     {% endif %}
     <div id="person-text">
-    <span style="font-weight: bold;">{{ person.first_name }}&nbsp;{{ person.last_name }}</span><br />
+    <span id="person-name">{{ person.first_name }}&nbsp;{{ person.last_name }}</span><br />
     Studiengang: {{ person.study }}<br />
     {% if person.committees %}
         weitere Aktivitäten: {{ person.committees }}

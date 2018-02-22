@@ -310,19 +310,29 @@ a:visited {
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
 }
 
+#person-name {
+  font-size: 1.2em;
+  font-weight: bolder;
+}
 
 #person-image {
   float: left;
   width: 30%;
-  -webkit-background-size: contain;
+  height: 60%;
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
 }
 
 #person-text {
   float: right;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   width: 70%;
+  height: 60%;
   font-size: 0.9em;
-  margin-left: 10px;
+  padding-left: 10px;
 }
 
 #person-text:after {
