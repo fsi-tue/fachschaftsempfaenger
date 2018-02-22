@@ -8,6 +8,7 @@ events of the student union of Computer Science in Tuebingen.
 from icalendar import Calendar
 import requests
 
+
 def events(url):
     """
     Yields a generator of the events in the ical file provided by the url
@@ -19,9 +20,13 @@ def events(url):
                  format (date, time, title, location)
         :rtype: generator
     """
-    response = requests.get(url, verify=False)
-    response.encoding = 'utf-8'
-    calendar = Calendar.from_ical(response.text).walk('vevent')
+    try:
+        response = requests.get(url, verify=False)
+        response.encoding = 'utf-8'
+        calendar = Calendar.from_ical(response.text).walk('vevent')
+    except requests.exceptions.RequestException as e:
+        calendar = []
+        print("Connection to caldav server failed with error: ", e)
 
     def _get_date(event):
         return event.decoded('dtstart').strftime("%d.%m.%Y")
@@ -35,7 +40,7 @@ def events(url):
     def _get_location(event):
         try:
             location = event['location']
-        except:
+        except KeyError as _:
             location = "TBA"
         return location
 
