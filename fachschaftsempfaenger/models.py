@@ -60,3 +60,30 @@ class Advertisement(models.Model):
 
     def __str__(self):
         return self.image.name
+
+
+class Member(models.Model):
+    """"
+    Ability to display a member of the student union with picture, field of study,
+    memberships in university committees etc.
+    """
+
+    first_name = models.TextField(verbose_name="Vorname",
+                                  editable=True,
+                                  blank=False,
+                                  default="",
+                                  )
+
+    last_name = models.TextField(verbose_name="Nachname",
+                                 editable=True,
+                                 blank=False,
+                                 default="",
+                                 )
+
+    image = models.ImageField(verbose_name="Foto", default='no_pic.png')
+    study = models.TextField(verbose_name="Studiengang", blank=False)
+    committees = models.TextField(verbose_name="Gremien/andere Aktivitäten", blank=True)
+
+    class Meta:
+        verbose_name = "Fachschaftsmitglied"
+        verbose_name_plural = "Fachschaftsmitglieder"

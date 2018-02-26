@@ -310,6 +310,40 @@ a:visited {
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
 }
 
+/* declarations for 'know your fachschaft' */
+
+#person-name {
+  font-size: 1.2em;
+  font-weight: bolder;
+}
+
+#person-image {
+  float: left;
+  width: 30%;
+  height: 60%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+#person-text {
+  float: right;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 70%;
+  height: 60%;
+  font-size: 0.9em;
+  padding-left: 10px;
+}
+
+#person-text:after {
+  clear: both;
+}
+
+#person-text table {
+  width: 100%;
+}
 
 #ad-image {
   height: 80%;
@@ -317,7 +351,6 @@ a:visited {
   -webkit-background-size: contain;
   background-size: contain;
 }
-
 
 .col-item-header {
   text-align: center;

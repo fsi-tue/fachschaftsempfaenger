@@ -30,7 +30,7 @@ db.sqlite3
 
 # uploads folder
 uploads/
-
+!uploads/no_pic.png
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
