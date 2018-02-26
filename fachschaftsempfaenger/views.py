@@ -9,7 +9,7 @@ from django.template import loader
 
 import requests
 
-from fachschaftsempfaenger.models import Food, Menu, Advertisement, Fachschaft
+from fachschaftsempfaenger.models import Food, Menu, Advertisement, Member
 from . import calendar
 from . import weather
 from . import mensa
@@ -143,8 +143,8 @@ def fachschaft_tile(request):
     """
     # Select one of the people in the database at random and display their details.
     # Note that this query is quite expensive and could potentially slow the load time of this tile down.
-    if Fachschaft.objects.exists():
-        qs = Fachschaft.objects.order_by('?').first()
+    if Member.objects.exists():
+        qs = Member.objects.order_by('?').first()
         context = dict(person=qs)
     else:
         print("No people of the student union found in database!")

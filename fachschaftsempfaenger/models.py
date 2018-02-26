@@ -62,7 +62,7 @@ class Advertisement(models.Model):
         return self.image.name
 
 
-class Fachschaft(models.Model):
+class Member(models.Model):
     """"
     Ability to display a member of the student union with picture, field of study,
     memberships in university committees etc.
