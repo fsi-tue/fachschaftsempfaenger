@@ -322,7 +322,8 @@ a:visited {
   width: 30%;
   height: 60%;
   background-size: contain;
-  background: no-repeat top;
+  background-repeat: no-repeat;
+  background-position-x: center;
 }
 
 #person-text {

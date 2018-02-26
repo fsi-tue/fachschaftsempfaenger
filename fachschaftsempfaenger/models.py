@@ -80,7 +80,7 @@ class Fachschaft(models.Model):
                                  default="",
                                  )
 
-    image = models.ImageField(verbose_name="Foto", blank=True)
+    image = models.ImageField(verbose_name="Foto", default='no_pic_grace.png')
     study = models.TextField(verbose_name="Studiengang", blank=False)
     committees = models.TextField(verbose_name="Gremien/andere Aktivitäten", blank=True)
 
