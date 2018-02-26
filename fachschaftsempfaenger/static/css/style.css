@@ -310,6 +310,8 @@ a:visited {
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
 }
 
+/* declarations for 'know your fachschaft' */
+
 #person-name {
   font-size: 1.2em;
   font-weight: bolder;
@@ -320,8 +322,7 @@ a:visited {
   width: 30%;
   height: 60%;
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top;
+  background: no-repeat top;
 }
 
 #person-text {
@@ -349,7 +350,6 @@ a:visited {
   -webkit-background-size: contain;
   background-size: contain;
 }
-
 
 .col-item-header {
   text-align: center;
