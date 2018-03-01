@@ -9,50 +9,30 @@ union of Computer Science <http://www.fsi.uni-tuebingen.de/>`_ at the
 university of Tuebingen to provide a simple screen with important information
 for the students and employees at department of Computer Science in Tuebingen.
 
-Quickstart
-==========
+Installation
+============
 
-1. Clone this repository
+*Fachschaftsempfaenger* can be installed using
+`pip <https://pip.pypa.io/en/stable/>`_:
 
-.. code-block:: bash
+.. code:: bash
 
-    git clone https://github.com/fsi-tue/fachschaftsempfaenger.git
-
-2. Change directory to the cloned project and install the requirements
-
-.. code-block:: bash
-
-    cd fachschaftsempfaenger
-    pip install -r requirements.txt
-
-3. Make the migrations
-
-.. code-block:: bash
-
-    python manage.py migrate
-    python manage.py makemigrations fachschaftsempfaenger
-    python manage.py migrate fachschaftsempfaenger
+    pip install --user git+https://github.com/fsi-tue/fachschaftsempfaenger
 
 
-4. Define a superuser to access the Django admin
+After successfully installing *fachschaftsempfaenger* it can be simply added to
+existing or new django installations by adding it to the ``INSTALLED_APPS`` list
+in your django instance' ``settings.py``.
 
-.. code-block:: bash
+For more information see the documentation's `installation section <>`_.
 
-    python manage.py createsuperuser
-
-5. Start a local server:
-
-.. code-block:: bash
-
-    python manage.py runserver
-
-6. Open a browser and go to http://127.0.0.1:8000/
 
 Documentation
 =============
 
 *fachschaftsempfaenger* uses ``sphinx`` to create a documentation manual.
 The documentation can be found `here <>`_.
+
 
 Getting involved
 ================
@@ -71,6 +51,7 @@ The *fachschaftsempfaenger* project welcomes help in the following ways:
 
 For more information on how to contribute to *fachschaftsempfaenger* have a
 look at the `development section <>`_.
+
 
 Acknowledgments
 ===============
