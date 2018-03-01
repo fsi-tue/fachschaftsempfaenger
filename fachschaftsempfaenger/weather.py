@@ -3,6 +3,9 @@ weather.py
 ----------
 
 ``weather.py`` contains the functionality to get current weather details.
+
+The functions are adapted from the student union of Computer Science at the
+university of Freiburg.
 """
 import requests
 from lxml import html

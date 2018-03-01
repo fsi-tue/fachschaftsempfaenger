@@ -10,7 +10,7 @@ Development
 Getting Involved
 ----------------
 
-The *Fachschaftsempfaenger* project welcomes help in the following ways:
+The *fachschaftsempfaenger* project welcomes help in the following ways:
 
     * Making Pull Requests for
       `code <https://github.com/fsi-tue/fachschaftsempfaenger/tree/master/fachschaftsempfaenger>`_,
@@ -23,6 +23,14 @@ The *Fachschaftsempfaenger* project welcomes help in the following ways:
       <https://github.com/fsi-tue/fachschaftsempfaenger/issues/new>`_.
 
 
+Adapt it to your own needs
+--------------------------
+
+The following workflow also works fine if you are interested in creating your
+own infoscreen. Except submitting Pull Requests to our own repository, simply
+reimplement the submodules and views to your own needs.
+
+
 Workflow
 --------
 
@@ -30,27 +38,56 @@ Workflow
    forked this repository to
    https://github.com/yourname/fachschaftsempfaenger.git
 
-2. Get a local copy of your fork and run the Django server locally.
+2. Install *fachschaftsempfaenger* locally in development mode
 
 .. code:: bash
 
     git clone https://github.com/yourname/fachschaftsempfaenger.git
     cd fachschaftsempfaenger
-    python3 manage.py runserver
+    python setup.py develop --user
 
-3. Add code, tests or documentation. You can reference relevant issues in
-   commit messages (like #42) to make GitHub link issues and commits together,
-   and with phrase like "fixes #42" you can even close relevant issues
-   automatically.
-
-4. Push your local changes to your fork:
+3. Create a django project structure on your machine with
 
 .. code:: bash
 
-    git push git@github.com:yourname/fachschaftsempfaenger.git
+    django-admin startproject yourproject
 
-5. Open the Pull Requests page at
-   https://github.com/yourname/fachschaftsempfaenger/pulls and
+4. Add *fachschaftsempfaenger* to your ``INSTALLED_APPS`` in
+   ``yourproject/mysite/settings.py``:
+
+.. code-block:: python
+
+   INSTALLED_APPS = [
+       ...,
+       'fachschaftsempfaenger'
+   ]
+
+5. Add code, tests or documentation.
+
+.. note::
+
+    If you are from another student union we recommend to reimplement all
+    submodules to your own needs.
+
+6. Add and commit your changes.
+
+   .. code:: bash
+
+       git add -u
+       git commit -m 'fixes #42 by posing the question in the right way'
+
+   You can reference relevant issues in commit messages (like #42) to make GitHub
+   link issues and commits together, and with phrase like "fixes #42" you can
+   even close relevant issues automatically.
+
+7. Push your local changes to your fork:
+
+  .. code:: bash
+
+      git push git@github.com:yourname/fachschaftsempfaenger.git
+
+8. If the changes you made are relevant for our project, feel free to submit a
+   Pull Request at https://github.com/yourname/fachschaftsempfaenger/pulls and
    click "New pull request" to submit your Pull Request to
    https://github.com/fsi-tue/fachschaftsempfaenger.
 
