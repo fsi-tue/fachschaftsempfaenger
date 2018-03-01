@@ -1,5 +1,5 @@
-Submodules
-==========
+Module Documentation
+====================
 
 All sumodules listed below can be found in the ``fachschaftsempfaenger/``
 directory in this project.

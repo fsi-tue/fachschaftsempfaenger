@@ -5,7 +5,7 @@ Authors
 -------
 
 *Fachschaftsempfaenger* was mainly developed by
-`Marc Weitz <https://github.com/trybnetic>`_,
+`Marc Weitz <https://github.com/trybnetic>`_
 and `Tim Beckmann <https://github.com/elogy>`_. For the full list of
 contributers have a look at `Github's Contributor summary
 <https://github.com/fsi-tue/fachschaftsempfaenger/contributors>`_.

@@ -12,9 +12,8 @@
    :maxdepth: 2
    :caption: Contents:
 
+   installation
    usage
-   customize
-   administration
    submodules
    development
    about
