@@ -24,14 +24,15 @@ After successfully installing *fachschaftsempfaenger* it can be simply added to
 existing or new django installations by adding it to the ``INSTALLED_APPS`` list
 in your django instance' ``settings.py``.
 
-For more information see the documentation's `installation section <>`_.
+For more information see the documentation's `installation section
+<url/to/documentation/installation.html>`_.
 
 
 Documentation
 =============
 
 *fachschaftsempfaenger* uses ``sphinx`` to create a documentation manual.
-The documentation can be found `here <>`_.
+The documentation can be found `here <url/to/documentation/>`_.
 
 
 Getting involved
@@ -50,7 +51,7 @@ The *fachschaftsempfaenger* project welcomes help in the following ways:
   <https://github.com/fsi-tue/fachschaftsempfaenger/issues/new>`_.
 
 For more information on how to contribute to *fachschaftsempfaenger* have a
-look at the `development section <>`_.
+look at the `development section <url/to/documentation/development.html>`_.
 
 
 Acknowledgments
