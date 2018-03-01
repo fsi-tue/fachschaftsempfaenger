@@ -29,13 +29,13 @@ Development Server
 
 .. code-block:: bash
 
-    django-admin startproject your-project
+    django-admin startproject yourproject
 
-This will create a `your-project` directory in your current directory:
+This will create a `yourproject` directory in your current directory:
 
 .. code-block:: bash
 
-    your-project/
+    yourproject/
       manage.py
       mysite/
           __init__.py
