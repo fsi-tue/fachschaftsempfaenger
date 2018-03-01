@@ -3,7 +3,7 @@ Installation
 
 This repository contains a fully functional version of *fachschaftsempfaenger*
 as it is run by the student union of Computer Science at the university of
-Tuebingen. This guide aims to instruct you to get your version runnung either in
+Tuebingen. This guide aims to instruct you to get your version running either in
 development mode on your PC or on a production version on a server.
 
 
