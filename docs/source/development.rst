@@ -50,10 +50,10 @@ Workflow
 
 .. code:: bash
 
-    django-admin startproject your-project
+    django-admin startproject yourproject
 
 4. Add *fachschaftsempfaenger* to your ``INSTALLED_APPS`` in
-   ``your-project/mysite/settings.py``:
+   ``yourproject/mysite/settings.py``:
 
 .. code-block:: python
 
