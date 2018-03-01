@@ -3,7 +3,7 @@ Installation
 
 This repository contains a fully functional version of *fachschaftsempfaenger*
 as it is run by the student union of Computer Science at the university of
-Tuebingen. This guide aims to instruct you to get your version run either in
+Tuebingen. This guide aims to instruct you to get your version runnung either in
 development mode on your PC or on a production version on a server.
 
 
@@ -52,7 +52,7 @@ This will create a `your-project` directory in your current directory:
         'fachschaftsempfaenger'
     ]
 
-4. Make the migrations to adapt the database scheme locally
+4. Make the migrations to adapt the database scheme locally:
 
 .. code-block:: bash
 
@@ -61,7 +61,7 @@ This will create a `your-project` directory in your current directory:
     python manage.py migrate fachschaftsempfaenger
 
 
-5. Define a superuser to access the Django admin
+5. Define a superuser to access the Django admin:
 
 .. code-block:: bash
 

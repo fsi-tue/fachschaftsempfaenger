@@ -46,7 +46,7 @@ Workflow
     cd fachschaftsempfaenger
     python setup.py develop --user
 
-3. Install a django development server on your machine with
+3. Create a django project structure on your machine with
 
 .. code:: bash
 
