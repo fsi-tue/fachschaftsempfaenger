@@ -4,6 +4,10 @@
 .. image:: https://img.shields.io/github/license/fsi-tue/fachschaftsempfaenger.svg
     :target: https://github.com/fsi-tue/fachschaftsempfaenger/blob/master/LICENSE.txt
 
+.. image:: https://readthedocs.org/projects/fachschaftsempfaenger/badge/?version=latest
+    :target: http://fachschaftsempfaenger.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 *Fachschaftsempfaenger* is a Django application created by the `student
 union of Computer Science <http://www.fsi.uni-tuebingen.de/>`_ at the
 university of Tuebingen to provide a simple screen with important information
