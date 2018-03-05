@@ -15,6 +15,4 @@ urlpatterns = [
     url(r'^tiles/advertisement\.html$', views.advertisement_tile),
     url(r'^tiles/fachschaft\.html$', views.fachschaft_tile),
     url(r'^$', views.index),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
+]

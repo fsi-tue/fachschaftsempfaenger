@@ -37,7 +37,7 @@ This will create a `yourproject` directory in your current directory:
 
     yourproject/
       manage.py
-      mysite/
+      yourproject/
           __init__.py
           settings.py
           urls.py
@@ -52,7 +52,33 @@ This will create a `yourproject` directory in your current directory:
         'fachschaftsempfaenger'
     ]
 
-4. Make the migrations to adapt the database scheme locally:
+4. Adjust your ``settings.py`` to accomodate uploads made by *fachschaftsempfaenger*:
+
+.. code-block:: python
+
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+    ...
+    MEDIA_URL = '/uploads/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+5. Adjust ``urls.py`` to make your installation of *fachschaftsempfaenger* reachable:
+
+.. code-block:: python
+
+    ...
+    from .settings import MEDIA_URL, MEDIA_ROOT
+    from django.urls import path, re_path, include
+    from django.conf.urls.static import static
+
+    urlpatterns = [
+    ...
+    re_path(r'^', include('fachschaftsempfaenger.urls')),
+    ...
+    ] + static(MEDIA_URL, document_root=MEDIA_ROOT) # this make the uploads folder reachable
+
+6. Make the migrations to adapt the database scheme locally:
 
 .. code-block:: bash
 
@@ -61,20 +87,20 @@ This will create a `yourproject` directory in your current directory:
     python manage.py migrate fachschaftsempfaenger
 
 
-5. Define a superuser to access the Django admin:
+7. Define a superuser to access the Django admin:
 
 .. code-block:: bash
 
     python manage.py createsuperuser
 
 
-6. Start a local server:
+8. Start a local server:
 
 .. code-block:: bash
 
     python manage.py runserver
 
-7. Open a browser and go to http://127.0.0.1:8000/
+9. Open a browser and go to http://127.0.0.1:8000/
 
 
 Production Server
