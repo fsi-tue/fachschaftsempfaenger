@@ -1,6 +1,6 @@
 django
 requests
 lxml
-stuweparser==0.0.1
+stuweparser
 icalendar
 pytz
