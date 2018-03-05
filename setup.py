@@ -28,5 +28,5 @@ setup(
     classifiers=classifiers,
     platforms='Linux',
     packages=['fachschaftsempfaenger'],
-    install_requires=load_requirements('requirements.txt'),
+    install_requires=load_requirements('requirements.txt')
 )
