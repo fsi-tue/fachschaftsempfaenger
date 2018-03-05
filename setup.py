@@ -28,5 +28,9 @@ setup(
     classifiers=classifiers,
     platforms='Linux',
     packages=['fachschaftsempfaenger'],
-    install_requires=load_requirements('requirements.txt')
+    install_requires=load_requirements('requirements.txt'),
+    extras_require={
+        'docs': [
+            'sphinx >= 1.4',
+            'sphinx_rtd_theme']}
 )
