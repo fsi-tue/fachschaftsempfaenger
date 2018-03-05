@@ -29,6 +29,10 @@ setup(
     platforms='Linux',
     packages=['fachschaftsempfaenger'],
     install_requires=load_requirements('requirements.txt'),
+    extras_require={
+        'docs': [
+            'sphinx >= 1.4',
+            'sphinx_rtd_theme']},
     dependency_links=[
         # as long stuweparser is not on pypi install it from GitHub
         'https://github.com/Trybnetic/stuweparser/archive/master.zip#egg=stuweparser-0.0.1'
