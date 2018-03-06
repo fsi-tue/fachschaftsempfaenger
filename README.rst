@@ -4,6 +4,10 @@
 .. image:: https://img.shields.io/github/license/fsi-tue/fachschaftsempfaenger.svg
     :target: https://github.com/fsi-tue/fachschaftsempfaenger/blob/master/LICENSE.txt
 
+.. image:: https://readthedocs.org/projects/fachschaftsempfaenger/badge/?version=latest
+    :target: https://fachschaftsempfaenger.readthedocs.io/en/latest/index.html
+    :alt: Documentation Status
+
 *Fachschaftsempfaenger* is a Django application created by the `student
 union of Computer Science <http://www.fsi.uni-tuebingen.de/>`_ at the
 university of Tuebingen to provide a simple screen with important information
@@ -25,14 +29,15 @@ existing or new django installations by adding it to the ``INSTALLED_APPS`` list
 in your django instance' ``settings.py``.
 
 For more information see the documentation's `installation section
-<url/to/documentation/installation.html>`_.
+<https://fachschaftsempfaenger.readthedocs.io/en/latest/installation.html>`_.
 
 
 Documentation
 =============
 
 *fachschaftsempfaenger* uses ``sphinx`` to create a documentation manual.
-The documentation can be found `here <url/to/documentation/>`_.
+The documentation can be found `here
+<https://fachschaftsempfaenger.readthedocs.io/en/latest/index.html>`_.
 
 
 Getting involved
@@ -51,7 +56,8 @@ The *fachschaftsempfaenger* project welcomes help in the following ways:
   <https://github.com/fsi-tue/fachschaftsempfaenger/issues/new>`_.
 
 For more information on how to contribute to *fachschaftsempfaenger* have a
-look at the `development section <url/to/documentation/development.html>`_.
+look at the `development section
+<https://fachschaftsempfaenger.readthedocs.io/en/latest/development.html>`_.
 
 
 Acknowledgments

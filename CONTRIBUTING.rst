@@ -21,4 +21,5 @@ How to contribute
 -----------------
 
 For more information on how to contribute to *fachschaftsempfaenger* have a
-look at the `development section <>`_.
+look at the `development section
+<https://fachschaftsempfaenger.readthedocs.io/en/latest/development.html>`_.
