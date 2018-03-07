@@ -24,6 +24,12 @@ def events(url):
         response = requests.get(url, verify=False)
         response.encoding = 'utf-8'
         calendar = Calendar.from_ical(response.text).walk('vevent')
+
+        def _key(event):
+            return event.decoded('dtstart').strftime("%d.%m.%Y %H:%M")
+
+        calendar = sorted(calendar, key=_key, reverse=False)
+
     except requests.exceptions.RequestException as e:
         calendar = []
         print("Connection to caldav server failed with error: ", e)
