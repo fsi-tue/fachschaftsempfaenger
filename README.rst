@@ -4,6 +4,9 @@
 .. image:: https://img.shields.io/github/license/fsi-tue/fachschaftsempfaenger.svg
     :target: https://github.com/fsi-tue/fachschaftsempfaenger/blob/master/LICENSE.txt
 
+.. image:: https://pyup.io/repos/github/fsi-tue/fachschaftsempfaenger/shield.svg
+    :target: https://pyup.io/repos/github/fsi-tue/fachschaftsempfaenger/
+
 .. image:: https://readthedocs.org/projects/fachschaftsempfaenger/badge/?version=latest
     :target: https://fachschaftsempfaenger.readthedocs.io/en/latest/index.html
     :alt: Documentation Status
