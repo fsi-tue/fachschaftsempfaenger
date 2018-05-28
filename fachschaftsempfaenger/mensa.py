@@ -6,13 +6,9 @@ mensa.py
 website of student services in Tuebingen.
 
 """
-import logging
-
-import requests
-import xml.dom.minidom as minidom
-import re
+from urllib.request import Request, urlopen
+import json
 import datetime
-from stuweparser import crawler, parser
 
 
 def load_data(url):
@@ -26,16 +22,27 @@ def load_data(url):
                  information that the mensa is closed on this day.
         :rtype: tuple of str and list of str
     """
-    html = crawler.crawl(url)
-    menue_table = parser.parse_menues(html)
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/5'
 
-    meals = [(food, student_price) for name, food, student_price, guest_price
-             in menue_table
-             if food is not None]
+                                     '37.11 (KHTML, like Gecko) '
+                                     'Chrome/23.0.1271.64 Safari/537.11',
+               'Accept': 'text/html,application/xhtml+xml,'
+                         'application/xml;q=0.9,*/*;q=0.8',
+               'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+               'Accept-Encoding': 'none',
+               'Accept-Language': 'en-US,en;q=0.8',
+               'Connection': 'keep-alive'}
 
-    day = parser.parse_current_day(html)
-    date = parser.parse_current_date(html)
+    request = Request(url, headers=headers)
+    response = urlopen(request)
 
-    date_string = day + ", " + date
+    data = json.load(response)["631"]
 
-    return date_string, meals
+    today = datetime.date.today().strftime("%Y-%m-%d")
+    meals = [(", ".join(menu["menu"]), menu["studentPrice"])
+             for menu in data["menus"] if menu["menuDate"] == today]
+
+    today = datetime.date.today().strftime("%d.%m.%Y")
+
+
+    return today, meals
