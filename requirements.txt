@@ -1,7 +1,6 @@
 django==2.0.3
 requests==2.18.4
 lxml==4.2.1
-stuweparser==0.1.1
 icalendar==4.0.1
 pytz==2018.3
 Pillow
