@@ -1,4 +1,4 @@
-django==2.0.3
+django==2.0.5
 requests==2.18.4
 lxml==4.2.1
 icalendar==4.0.1
