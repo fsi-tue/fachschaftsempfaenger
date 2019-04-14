@@ -83,7 +83,7 @@ def weather_tile(request, use_kelvin=False):
 
 def mensa_tile(request):
     mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
-    mensa_json = "https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/631"
+    mensa_json = "https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/621"
 
     try:
         date_string, meals = mensa.load_data(mensa_json)
