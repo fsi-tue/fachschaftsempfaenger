@@ -40,7 +40,7 @@ def calendar_tile(request):
         event_generator = calendar.events(ical_url)
         events = list(event_generator)#[:number_events]
 
-    url = "www.fsi.uni-tuebingen.de"
+    url = "https://cloud.fsi.uni-tuebingen.de/remote.php/dav/public-calendars/e8wPTX4TBpCNpb7W"
     events = events[:number_events]
 
     return render(request, 'tiles/calendar.html', dict(events=events, link=url))
@@ -89,9 +89,8 @@ def weather_tile(request, use_kelvin=False):
 
 def mensa_tile(request):
     mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
-    mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/621"
     mensa_id = "621"
-
+    mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
 
     try:
         date_string, meals = mensa.load_data(mensa_json, mensa_id)
