@@ -31,7 +31,6 @@ def calendar_tile(request):
         event_generator = calendar.events(ical_url)
         events = []
         for item in event_generator:
-            print(item[0])
             # only put the item in if it is today or in the future
             if datetime.strptime(item[0], '%d.%m.%Y').date() >= datetime.today().date():
                 events.append(item)
@@ -96,7 +95,6 @@ def mensa_tile(request):
 
     try:
         date_string, meals = mensa.load_data(mensa_json, mensa_id)
-        print(date_string, meals)
 
         context = dict(meals=meals,
                        link=mensa_website, date=date_string)
