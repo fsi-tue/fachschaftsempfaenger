@@ -1,5 +1,5 @@
 django==2.1.11
-requests==2.18.4
+requests==2.20.0
 lxml==4.2.1
 icalendar==4.0.1
 pytz==2018.3
