@@ -5,6 +5,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <script src="https://use.fontawesome.com/eb448271e0.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
@@ -51,14 +52,15 @@
       </div><!-- /col -->
         <!-- Spalte 2 -->
       <div class="col">
-        <div id="weather"></div>
-        <div id="forecast"></div>
+          <div id="fachschaft"></div>
+        <!-- <div id="weather"></div>
+        <div id="forecast"></div> -->
       </div> <!-- /col -->
       <!-- Spalte 3 -->
       <div class="col">
         <div id="calendar"></div>
         <div id="sitzung"></div>
-        <div id="fachschaft"></div>
+
       </div> <!-- /col -->
       <!-- Spalte 4 -->
       <div class="col">
@@ -72,14 +74,12 @@
         <div id="footer-right" class="footerbox">&copy; {{ copyright }}&nbsp; &bullet; &nbsp; <i class="fa fa-code-fork"></i> <a href="{{ repo_url }}">Fork this on GitHub<span>: {{ repo_url }}</span></a></div>
     </div>
     {% endif %}
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
   <script>
      (function() {
          var tiles = [
            {id: 'mensa', url: '/tiles/mensa.html', timeout: 4320, height: 2, color: 'purple'},
            {id: 'foodtruck', url: '/tiles/foodtruck.html', timeout: 4320, height: 2, color: 'purple'},
-           {id: 'weather', url: '/tiles/weather.html', timeout: 100, height: 1, color: 'green'},
-           {id: 'forecast', url: '/tiles/forecast.html', timeout: 120, height: 2, color: 'green'},
            {id: 'bus', url: '/tiles/bus.html', timeout: 30, height: 2, color: 'orange'},
            {id: 'sitzung', url: '/tiles/sitzung.html', timeout: 5000, height: 1, color: 'red'},
            {id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, height: 2, color: 'red'},

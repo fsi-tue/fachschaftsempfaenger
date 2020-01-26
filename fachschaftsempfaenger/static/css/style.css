@@ -476,3 +476,73 @@ a:visited {
     visibility: hidden;
   }
 }
+@media screen and (max-width: 768px) {
+  #col-container {
+    display:flex;
+  }
+
+  .col {
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .col-item {
+    width: 100%;
+    margin: 10px 0 10px 0;
+    border-radius: 0;
+    box-shadow: 0;
+  }
+
+  #header {
+    width: 100vw;
+  }
+
+  .headerbox {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .headerbox h2 {
+    font-size: 1.1em;
+  }
+
+  .col-item  {
+    font-size: 1em;
+  }
+
+  #header-left {
+    visibility: collapse;
+  }
+
+  #footer {
+    visibility: collapse;
+    position: static;
+  }
+
+
+  .footerbox {
+    display: block;
+    width: 100%;
+  }
+
+  /* Reordering of tiles */
+  #col-container:nth-child(4) {
+    order: 1;
+  }
+  #col-container:nth-child(3) {
+    order: 2;
+  }
+  #col-container:nth-child(2) {
+    order: 4;
+  }
+  #col-container:nth-child(1) {
+    order: 3;
+  }
+}
