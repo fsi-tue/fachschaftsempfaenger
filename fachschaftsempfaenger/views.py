@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import json
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -23,18 +23,25 @@ def sitzung_tile(request):
 
 
 def calendar_tile(request):
-    ical_url = "http://fachschaftsempfaenger.fsi.uni-tuebingen.de:5232/fsi/1928360d-1133-10b2-d238-b7335c4f778f/"
+    ical_url = 'https://cloud.fsi.uni-tuebingen.de/remote.php/dav/public-calendars/e8wPTX4TBpCNpb7W?export'
 
     number_events = 5
 
     try:
         event_generator = calendar.events(ical_url)
-        events = [next(event_generator) for _ in range(number_events)]
+        events = []
+        for item in event_generator:
+            # only put the item in if it is today or in the future
+            if datetime.strptime(item[0], '%d.%m.%Y').date() >= datetime.today().date():
+                events.append(item)
+        # slice according to number_events
+        events = events[:number_events]
     except:
         event_generator = calendar.events(ical_url)
         events = list(event_generator)#[:number_events]
 
-    url = "www.fsi.uni-tuebingen.de"
+    url = "https://cloud.fsi.uni-tuebingen.de/remote.php/dav/public-calendars/e8wPTX4TBpCNpb7W"
+    events = events[:number_events]
 
     return render(request, 'tiles/calendar.html', dict(events=events, link=url))
 
@@ -52,7 +59,6 @@ def forecast_tile(request):
     response = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/forecast?q=Tuebingen,DE&appid=806b3582a0c4787e47e950a6274b681a&units=metric')
     content = response.read()
     data = json.loads(content.decode('utf-8'))
-    #
 
     today_string = datetime.datetime.now().strftime('%Y-%m-%d')
     tomorrow_string = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
@@ -83,14 +89,16 @@ def weather_tile(request, use_kelvin=False):
 
 def mensa_tile(request):
     mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
-    mensa_json = "https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/631"
+    mensa_id = "621"
+    mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
 
     try:
-        date_string, meals = mensa.load_data(mensa_json)
+        date_string, meals = mensa.load_data(mensa_json, mensa_id)
+
         context = dict(meals=meals,
                        link=mensa_website, date=date_string)
-    except BaseException:
-        print("Error retrieving the Mensa plan!")
+    except BaseException as e:
+        print("Error retrieving the Mensa plan!", e)
         context = dict(meals=None, link=mensa_website, hidden=True)
 
     return render(request, 'tiles/mensa.html', context)

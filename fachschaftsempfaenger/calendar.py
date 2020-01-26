@@ -26,7 +26,7 @@ def events(url):
         calendar = Calendar.from_ical(response.text).walk('vevent')
 
         def _key(event):
-            return event.decoded('dtstart').strftime("%d.%m.%Y %H:%M")
+            return event.decoded('dtstart').strftime("%Y.%m.%d %H:%M")
 
         calendar = sorted(calendar, key=_key, reverse=False)
 
