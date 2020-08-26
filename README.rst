@@ -16,23 +16,37 @@ union of Computer Science <http://www.fsi.uni-tuebingen.de/>`_ at the
 university of Tuebingen to provide a simple screen with important information
 for the students and employees at department of Computer Science in Tuebingen.
 
-Installation
-============
+Installation with pip
+=====================
 
-*Fachschaftsempfaenger* can be installed using
-`pip <https://pip.pypa.io/en/stable/>`_:
+Checkout the pip branch more information.
 
+
+Installation with docker
+========================
+
+This is for testing and local deployment purposes. For instances facing the internet or production mode, see this `config <https://github.com/fsi-tue/docker/tree/master/fachschaftsempfaenger>`_.
+
+Install docker and docker-compose on your system (with your package manager or manually).
+
+Clone this repo (or use the HTTPS variant):
 .. code:: bash
 
-    pip install --user git+https://github.com/fsi-tue/fachschaftsempfaenger
+    git clone git@github.com:fsi-tue/fachschaftsempfaenger.git
 
 
-After successfully installing *fachschaftsempfaenger* it can be simply added to
-existing or new django installations by adding it to the ``INSTALLED_APPS`` list
-in your django instance' ``settings.py``.
+Build the image and start the container with docker-compose (--build is only needed for the first time or when changing things in requirements.txt).
+Also execute the script (you also need to do this when upgrading Django etc.):
+.. code:: bash
 
-For more information see the documentation's `installation section
-<https://fachschaftsempfaenger.readthedocs.io/en/latest/installation.html>`_.
+    sudo docker-compose up -d --build
+    sudo docker-compose exec web bash /code/script.sh
+
+
+ When finished, remove the container:
+.. code:: bash
+
+    sudo docker-compose down
 
 
 Documentation
