@@ -19,7 +19,37 @@ from . import __repository_url__ as repo_url
 
 
 def sitzung_tile(request):
-    return render(request, 'tiles/sitzung.html')
+    ical_url = 'https://cloud.fsi.uni-tuebingen.de/remote.php/dav/public-calendars/e8wPTX4TBpCNpb7W?export'
+
+    """
+    Naming convention for 'Sitzungen' in the FSI calender is the keyword "Sitzung" lead by either prefix {"FSI"|"FSK"}
+    ie. "FSI Sitzung" or "FSK Sitzung"
+    
+    If necessary titles can be extended by placing additional identifiers between upper keywords.
+    ie. "FSI Discord Sitzung"
+    although these can mentioned in the location handle as well
+    """
+    try:
+        # event_generator returns sorted event tuplets
+        event_generator = calendar.events(ical_url)
+        info = None
+        kogni = None
+
+        for event in event_generator:
+            # item = (date, time, title, location)
+            title = str(event[2]).lower().strip()
+            if title.endswith("sitzung") and datetime.strptime(event[0], '%d.%m.%Y').date() >= datetime.today().date():
+                if title.startswith("fsi") and not info:
+                    info = dict(date=event[0], time=event[1], location=event[3])
+                elif title.startswith("fsk") and not kogni:
+                    kogni = dict(date=event[0], time=event[1], location=event[3])
+                else:
+                    pass
+    except:
+        info = None
+        kogni = None
+
+    return render(request, 'tiles/sitzung.html', dict(info=info, kogni=kogni))
 
 
 def calendar_tile(request):
@@ -38,7 +68,7 @@ def calendar_tile(request):
         events = events[:number_events]
     except:
         event_generator = calendar.events(ical_url)
-        events = list(event_generator)#[:number_events]
+        events = list(event_generator)  # [:number_events]
 
     url = "https://cloud.fsi.uni-tuebingen.de/remote.php/dav/public-calendars/e8wPTX4TBpCNpb7W"
     events = events[:number_events]
@@ -56,7 +86,8 @@ def bus_tile(request):
 
 def forecast_tile(request):
     import urllib.request
-    response = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/forecast?q=Tuebingen,DE&appid=806b3582a0c4787e47e950a6274b681a&units=metric')
+    response = urllib.request.urlopen(
+        'http://api.openweathermap.org/data/2.5/forecast?q=Tuebingen,DE&appid=806b3582a0c4787e47e950a6274b681a&units=metric')
     content = response.read()
     data = json.loads(content.decode('utf-8'))
 
