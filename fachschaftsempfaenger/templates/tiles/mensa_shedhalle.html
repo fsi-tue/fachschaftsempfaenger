@@ -1,0 +1,20 @@
+{% extends 'tiles/tile.html' %}
+
+{% block content %}
+<div class="col-item-header">
+  <i class="fa fa-cutlery"></i>Mensa Shedhalle
+</div>
+    {% if meals and date %}
+      <span class="food_date">{{ date }}</span>
+      <table class="foodtable">
+        {% for food, student_price in meals %}
+          <tr>
+          <td>{{ food }}</td><td>{{ student_price }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+        Kein Speiseplan verfügbar
+    {% endif %}
+
+{% endblock %}

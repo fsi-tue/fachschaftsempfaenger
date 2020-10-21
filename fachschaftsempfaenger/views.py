@@ -70,7 +70,7 @@ def calendar_tile(request):
         event_generator = calendar.events(ical_url)
         events = list(event_generator)  # [:number_events]
 
-    url = "https://cloud.fsi.uni-tuebingen.de/remote.php/dav/public-calendars/e8wPTX4TBpCNpb7W"
+    url = "https://cloud.fsi.uni-tuebingen.de/apps/calendar/p/e8wPTX4TBpCNpb7W"
     events = events[:number_events]
 
     return render(request, 'tiles/calendar.html', dict(events=events, link=url))
@@ -118,7 +118,7 @@ def weather_tile(request, use_kelvin=False):
     return render(request, 'tiles/weather.html', ctx)
 
 
-def mensa_tile(request):
+def mensa_morgenstelle_tile(request):
     mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
     mensa_id = "621"
     mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
@@ -132,7 +132,24 @@ def mensa_tile(request):
         print("Error retrieving the Mensa plan!", e)
         context = dict(meals=None, link=mensa_website, hidden=True)
 
-    return render(request, 'tiles/mensa.html', context)
+    return render(request, 'tiles/mensa_morgenstelle.html', context)
+
+
+def mensa_shedhalle_tile(request):
+    mensa_website = "http://www.my-stuwe.de/mensa/mensa-shedhalle"
+    mensa_id = "611"
+    mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
+
+    try:
+        date_string, meals = mensa.load_data(mensa_json, mensa_id)
+
+        context = dict(meals=meals,
+                       link=mensa_website, date=date_string)
+    except BaseException as e:
+        print("Error retrieving the Mensa plan!", e)
+        context = dict(meals=None, link=mensa_website, hidden=True)
+
+    return render(request, 'tiles/mensa_shedhalle.html', context)
 
 
 def foodtruck_tile(request):
