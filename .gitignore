@@ -110,3 +110,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# ignore generated content or added media
+fachschaftsempfaenger/static/admin/
+fachschaftsempfaenger/static/media/
