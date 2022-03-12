@@ -121,5 +121,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'fachschaftsempfaenger/static/'
-MEDIA_URL = 'static/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = 'fachschaftsempfaenger/static/media/'
