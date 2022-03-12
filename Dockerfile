@@ -7,5 +7,7 @@ ADD ./requirements.txt /code/
 RUN apk upgrade --update && \
     apk add build-base libxml2-dev libxslt-dev jpeg-dev zlib-dev
 
+ENV MAKEFLAGS="-j10"
 RUN pip install -r ./requirements.txt
+
 ADD ./ /code/
