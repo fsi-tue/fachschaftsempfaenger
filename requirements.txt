@@ -1,6 +1,6 @@
 django==3.*
 requests==2.*
 lxml==4.*
-icalendar==4.*
+icalendar==5.*
 pytz==2021.3
 Pillow==9.*
