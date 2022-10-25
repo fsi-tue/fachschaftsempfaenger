@@ -1,4 +1,4 @@
-django==3.*
+django==4.*
 requests==2.*
 lxml==4.*
 icalendar==5.*
