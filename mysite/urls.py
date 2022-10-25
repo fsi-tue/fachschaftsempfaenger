@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from django.conf.urls import include, url
+from django.urls import include, re_path
 import fachschaftsempfaenger
 
 urlpatterns = [
-    url(r'^', include('fachschaftsempfaenger.urls')),
+    re_path(r'^', include('fachschaftsempfaenger.urls')),
 #    path('/', fachschaftsempfaenger.urls),
     path('admin/', admin.site.urls),
 ]
