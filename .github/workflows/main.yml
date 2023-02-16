@@ -1,0 +1,22 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - master
+jobs:
+  main:
+    name: Update FSE repository and build Docker image on trinity after push to master
+    runs-on: ubuntu-latest
+    steps:
+    - name: Execute remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: trinity.fsi.uni-tuebingen.de
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        # stored in secrets because it's easier to change this instead of updating this script
+        # i.e. when switching from RSA host key to ED25519
+        fingerprint: ${{ secrets.SSH_FINGERPRINT }}
+        script: |
+          sudo -u root /usr/bin/git -C /srv/docker/fachschaftsempfaenger/fse pull origin master
+          sudo -u root /bin/bash /srv/docker/fachschaftsempfaenger/fse/.github/scripts/deploy.sh
