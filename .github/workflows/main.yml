@@ -18,5 +18,5 @@ jobs:
         # i.e. when switching from RSA host key to ED25519
         fingerprint: ${{ secrets.SSH_FINGERPRINT }}
         script: |
-          sudo -u root /usr/bin/git -C /srv/docker/fachschaftsempfaenger/fse pull origin master
-          sudo -u root /bin/bash /srv/docker/fachschaftsempfaenger/fse/.github/scripts/deploy.sh
+          sudo -u root /usr/bin/git -C /srv/data/fachschaftsempfaenger/git pull origin master
+          sudo -u root /bin/bash /srv/data/fachschaftsempfaenger/git/.github/scripts/deploy.sh
