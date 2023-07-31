@@ -25,7 +25,7 @@ def get_departures(stop):
     """
 
     url = ('https://www.swtue.de/abfahrt.html?halt='
-           '%d' % stop)
+           '%s' % stop)
 
     page = requests.get(url)
     tree = html.fromstring(page.content)
