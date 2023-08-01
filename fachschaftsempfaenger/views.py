@@ -9,10 +9,11 @@ from django.template import loader
 
 import requests
 
-from fachschaftsempfaenger.models import Food, Menu, Advertisement, Member
+from fachschaftsempfaenger.models import Food, Menu, Advertisement, Member, Mastodon
 from . import calendar
 from . import weather
 from . import mensa
+from . import mastodon
 from . import bus
 from . import __author__ as author
 from . import __repository_url__ as repo_url
@@ -150,6 +151,36 @@ def mensa_shedhalle_tile(request):
         context = dict(meals=None, link=mensa_website, hidden=True)
 
     return render(request, 'tiles/mensa_shedhalle.html', context)
+
+
+def mastodon_tile(request):
+    """
+    Renders the Mastodon tile which shows the last post of a Mastodon Account provided in the Django
+    Administration Backend.
+    """
+
+    account = Mastodon.objects.filter(visible=True).first()
+
+    username = account.username
+    instance = account.instance
+
+    profile = account.instance + "/@" + username
+
+    try:
+        toot_id, toot_content, toot_attachment = mastodon.load_data(instance, username)
+
+        context = dict(toot_id=toot_id.replace('activity','embed'),
+                       toot_content=toot_content,
+                       toot_attachment=toot_attachment,
+                       toot_instance=instance,
+                       link=profile)
+
+    except BaseException as e:
+        print("Error retrieving the mastodon toot!", e)
+        context = dict(toot_id=None, toot_content=None, toot_attachment=None,
+                       toot_instance=instance, link=profile, hidden=True)
+
+    return render(request, 'tiles/mastodon.html', context)
 
 
 def foodtruck_tile(request):

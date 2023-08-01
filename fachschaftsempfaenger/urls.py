@@ -15,5 +15,6 @@ urlpatterns = [
     re_path(r'^tiles/foodtruck\.html$', views.foodtruck_tile),
     re_path(r'^tiles/advertisement\.html$', views.advertisement_tile),
     re_path(r'^tiles/fachschaft\.html$', views.fachschaft_tile),
+    re_path(r'^tiles/mastodon\.html$', views.mastodon_tile),
     re_path(r'^$', views.index),
 ]

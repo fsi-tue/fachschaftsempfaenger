@@ -370,6 +370,10 @@ a:visited {
   background-color: #9b59b6;
 }
 
+.mastodon-dark{
+  background-color: #313543;
+}
+
 .blue {
   background-color: #3498db;
 }

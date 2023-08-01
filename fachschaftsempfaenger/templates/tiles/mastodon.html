@@ -1,0 +1,29 @@
+{% extends 'tiles/tile.html' %}
+
+{% block content %}
+<div class="col-item-header">
+  <i class="fa-brands fa-mastodon"></i>Mastodon
+</div>
+
+{% if toot_id %}
+<iframe src="{{ toot_id }}" 
+        class="mastodon-embed" 
+        style="max-width: 100%; max-height=600px; border: 0;" 
+        width="440" height="600"
+        allowfullscreen="allowfullscreen">
+</iframe><script src="{{ toot_instance }}/embed.js" async="async"></script>
+{% else %}
+    Keine Toots verfügbar
+{% endif %}
+
+<!-- Maybe one day we write our own Embed...
+  {% if toot_id and toot_content %}
+      {% autoescape off %}
+      {{ toot_content }}
+      {% endautoescape %}
+  {% else %}
+      Keine Toots verfügbar
+  {% endif %}
+-->
+
+{% endblock %}
