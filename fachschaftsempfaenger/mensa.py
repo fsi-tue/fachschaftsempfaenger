@@ -30,9 +30,16 @@ def load_data(url, mensa_id):
     data = json.loads(decoded_data)[mensa_id]
 
     today = datetime.date.today().strftime("%Y-%m-%d")
+
+    if datetime.datetime.now().hour > 15:
+        today = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+
     meals = [(", ".join(menu["menu"]), menu["studentPrice"] + " €")
              for menu in data["menus"] if menu["menuDate"] == today]
 
-    today = datetime.date.today().strftime("%d.%m.%Y")
+    today = 'Heute ' + datetime.date.today().strftime("%d.%m.%Y")
+
+    if datetime.datetime.now().hour > 15:
+        today = 'Morgen ' + (datetime.date.today() + datetime.timedelta(days=1)).strftime("%d.%m.%Y")
 
     return today, meals

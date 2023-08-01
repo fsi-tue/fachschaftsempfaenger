@@ -8,7 +8,7 @@ delivered using the Django Web Framework.
 
 """
 
-__author__ = ('Marc Weitz & Tim Beckmann')
+__author__ = ('Marc Weitz, Tim Beckmann & Alexander Phi. Goetz')
 __author_email__ = 'fachschaftsempfaenger@fsi.uni-tuebingen.de'
 __repository_url__ = 'https://github.com/fsi-tue/fachschaftsempfaenger'
 __version__ = '1.0.0'
