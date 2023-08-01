@@ -4,7 +4,8 @@
     <meta charset="utf-8">
 
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <script src="https://use.fontawesome.com/eb448271e0.js"></script>
+    <!--<script src="https://use.fontawesome.com/eb448271e0.js"></script>-->
+    <script src="https://kit.fontawesome.com/43baf150ac.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% load static %}
@@ -54,6 +55,7 @@
         <!-- Spalte 2 -->
       <div class="col">
           <div id="fachschaft"></div>
+          <div id="mastodon"></div>
         <!-- <div id="weather"></div>
         <div id="forecast"></div> -->
       </div> <!-- /col -->
@@ -87,6 +89,7 @@
            {id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, height: 2, color: 'red'},
            {id: 'advertisement', url: '/tiles/advertisement.html', timeout: 300, height: 2, color: 'darkgrey'},
            {id: 'fachschaft', url: '/tiles/fachschaft.html', timeout: 300, height: 1, color: 'blue'},
+           {id: 'mastodon', url: '/tiles/mastodon.html', timeout: 300, height: 3, color: 'mastodon-dark'},
 
 //             , {id: 'regenradar', url: '/tiles/rainradar.html', timeout: 1800, color: 'green'}
 //             , {id: 'calendar', url: '/tiles/calendar.html', timeout: 400, color: 'red'}

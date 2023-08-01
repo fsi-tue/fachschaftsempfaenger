@@ -62,6 +62,31 @@ class Advertisement(models.Model):
         return self.image.name
 
 
+class Mastodon(models.Model):
+    """
+    Ability to display the last toot of a Mastodon account
+    """
+    visible = models.BooleanField(verbose_name="anzeigen",
+                                  editable=True,
+                                  blank=False,
+                                  default=False)
+
+    instance = models.URLField(verbose_name="Instanzadresse",
+                               editable=True,
+                               blank=False,
+                               default="https://mastodon.social")
+
+    username = models.CharField(verbose_name="Username",
+                                editable=True,
+                                blank=False,
+                                max_length=60,
+                                default="mastodon")
+
+    class Meta:
+        verbose_name = "Mastodon Account"
+        verbose_name_plural = "Mastodon Accounts"
+
+
 class Member(models.Model):
     """"
     Ability to display a member of the student union with picture, field of study,
