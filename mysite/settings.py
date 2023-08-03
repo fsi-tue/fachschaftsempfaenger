@@ -125,3 +125,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'fachschaftsempfaenger/static/media/'
 
 CSRF_TRUSTED_ORIGINS = ['https://fachschaftsempfaenger.fsi.uni-tuebingen.de', 'http://localhost:8000']
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
