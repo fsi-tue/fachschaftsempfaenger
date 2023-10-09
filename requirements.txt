@@ -1,7 +1,7 @@
 asgiref==3.7.2
 certifi==2023.7.22
 charset-normalizer==3.3.0
-Django==4.2.5
+Django==4.2.6
 icalendar==5.0.10
 idna==3.4
 lxml==4.9.3
