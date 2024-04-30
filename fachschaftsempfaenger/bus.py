@@ -24,19 +24,27 @@ def get_departures(stop):
         :rtype: list of tuple
     """
 
-    url = ('https://www.swtue.de/abfahrt.html?halt='
+    url = ('https://www.tuebus.de/vdfi-server/?stop='
            '%s' % stop)
 
-    page = requests.get(url)
-    tree = html.fromstring(page.content)
+    page = requests.get(url, stream=True)
+    page.encoding = 'utf-8'
+
+    # Read the second line containing the information
+    for i, t in enumerate(page.iter_lines(decode_unicode=True, delimiter='\n')):
+        if i == 1:
+            page = t
+            break
+
+    tree = html.fromstring(page)
 
     lines = []
     destinations = []
     times = []
 
-    header, *connections = zip(tree.find_class("linie"),
-                              tree.find_class("richtung"),
-                              tree.find_class("abfahrt"))
+    header, *connections = zip(tree.find_class("line"),
+                               tree.find_class("destination"),
+                               tree.find_class("abfahrt"))
 
     for line, destination, time in connections:
         times.append(time.text_content().strip())
