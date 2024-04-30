@@ -24,7 +24,7 @@ def load_data(instance, username):
         :rtype: dict
     """
 
-    url = instance + '/users/' + username + '/outbox?min_id=0&page=true'
+    url = instance + '/users/' + username + '/outbox?page=true'
 
     request = requests.get(url)
     decoded_data = request.text.encode().decode('utf-8-sig')
