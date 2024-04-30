@@ -6,24 +6,42 @@
 </div>
 
 {% if toot_id %}
+
+{% comment "Alternatively use Mastodon's default embed" %}
 <iframe src="{{ toot_id }}" 
         class="mastodon-embed" 
         style="max-width: 100%; max-height=600px; border: 0;" 
         width="440" height="600"
         allowfullscreen="allowfullscreen">
 </iframe><script src="{{ toot_instance }}/embed.js" async="async"></script>
+{% endcomment %}
+
+<div class="toot" style="">
+  {% if toot_attachment %}
+    <div class="toot-gallery" style="">
+      {% for i in toot_attachment %}
+        {% if forloop.first %}
+          <img src="{{ i.url }}" alt="{{ i.name }}" style="display:block;margin-left:auto;margin-right:auto;width:80%">
+        {% endif %}
+      {% empty %}
+        <!-- No Image -->
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="toot-content" style="margin:20px 10px">
+    {% if toot_content %}
+        {% autoescape off %}
+        {{ toot_content }}
+        {% endautoescape %}
+    {% else %}
+        Keine Toots verfügbar
+    {% endif %}
+  </div>
+</div>
+
 {% else %}
     Keine Toots verfügbar
 {% endif %}
-
-<!-- Maybe one day we write our own Embed...
-  {% if toot_id and toot_content %}
-      {% autoescape off %}
-      {{ toot_content }}
-      {% endautoescape %}
-  {% else %}
-      Keine Toots verfügbar
-  {% endif %}
--->
 
 {% endblock %}
