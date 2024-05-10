@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Execute remote ssh commands using ssh key
-      uses: appleboy/ssh-action@v0.1.7
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: trinity.fsi.uni-tuebingen.de
         username: ${{ secrets.SSH_USERNAME }}
