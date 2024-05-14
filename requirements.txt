@@ -4,7 +4,7 @@ charset-normalizer==3.3.2
 Django==4.2.13
 icalendar==5.0.12
 idna==3.7
-lxml==5.2.1
+lxml==5.2.2
 Pillow==10.3.0
 python-dateutil==2.9.0.post0
 pytz==2024.1
