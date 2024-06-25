@@ -2,7 +2,7 @@ asgiref==3.8.1
 certifi==2024.6.2
 charset-normalizer==3.3.2
 Django==4.2.13
-icalendar==5.0.12
+icalendar==5.0.13
 idna==3.7
 lxml==5.2.2
 Pillow==10.3.0
