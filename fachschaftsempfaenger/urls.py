@@ -11,7 +11,7 @@ urlpatterns = [
     re_path(r'^tiles/forecast\.html$', views.forecast_tile),
     re_path(r'^tiles/weather\.html$', views.weather_tile),
     re_path(r'^tiles/mensa_morgenstelle\.html$', views.mensa_morgenstelle_tile),
-    re_path(r'^tiles/mensa_shedhalle\.html$', views.mensa_shedhalle_tile),
+    re_path(r'^tiles/mensa_wilhelmstraße\.html$', views.mensa_wilhelmstraße_tile),
     re_path(r'^tiles/foodtruck\.html$', views.foodtruck_tile),
     re_path(r'^tiles/advertisement\.html$', views.advertisement_tile),
     re_path(r'^tiles/fachschaft\.html$', views.fachschaft_tile),
