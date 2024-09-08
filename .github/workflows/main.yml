@@ -14,6 +14,7 @@ jobs:
         host: trinity.fsi.uni-tuebingen.de
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
         # stored in secrets because it's easier to change this instead of updating this script
         # i.e. when switching from RSA host key to ED25519
         fingerprint: ${{ secrets.SSH_FINGERPRINT }}
