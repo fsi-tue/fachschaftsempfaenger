@@ -136,8 +136,8 @@ def mensa_morgenstelle_tile(request):
     return render(request, 'tiles/mensa_morgenstelle.html', context)
 
 
-def mensa_shedhalle_tile(request):
-    mensa_website = "http://www.my-stuwe.de/mensa/mensa-shedhalle"
+def mensa_wilhelmstraße_tile(request):
+    mensa_website = "http://www.my-stuwe.de/mensa/mensa-wilhelmstraße"
     mensa_id = "611"
     mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
 
@@ -150,7 +150,7 @@ def mensa_shedhalle_tile(request):
         print("Error retrieving the Mensa plan!", e)
         context = dict(meals=None, link=mensa_website, hidden=True)
 
-    return render(request, 'tiles/mensa_shedhalle.html', context)
+    return render(request, 'tiles/mensa_wilhelmstraße.html', context)
 
 
 def mastodon_tile(request):
