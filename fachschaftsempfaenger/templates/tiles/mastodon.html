@@ -1,47 +1,47 @@
 {% extends 'tiles/tile.html' %}
 
 {% block content %}
-<div class="col-item-header">
-  <i class="fa-brands fa-mastodon"></i>Mastodon
-</div>
-
-{% if toot_id %}
-
-{% comment "Alternatively use Mastodon's default embed" %}
-<iframe src="{{ toot_id }}" 
-        class="mastodon-embed" 
-        style="max-width: 100%; max-height=600px; border: 0;" 
-        width="440" height="600"
-        allowfullscreen="allowfullscreen">
-</iframe><script src="{{ toot_instance }}/embed.js" async="async"></script>
-{% endcomment %}
-
-<div class="toot" style="">
-  {% if toot_attachment %}
-    <div class="toot-gallery" style="">
-      {% for i in toot_attachment %}
-        {% if forloop.first %}
-          <img src="{{ i.url }}" alt="{{ i.name }}" style="display:block;margin-left:auto;margin-right:auto;width:80%">
-        {% endif %}
-      {% empty %}
-        <!-- No Image -->
-      {% endfor %}
+    <div class="col-item-header">
+        <i class="fa-brands fa-mastodon"></i>Mastodon
     </div>
-  {% endif %}
 
-  <div class="toot-content" style="margin:20px 10px">
-    {% if toot_content %}
-        {% autoescape off %}
-        {{ toot_content }}
-        {% endautoescape %}
+    {% if toot_id %}
+        <div class="toot-container">
+            <div class="toot-flex-layout">
+                {% if toot_attachment %}
+                    <div class="toot-gallery">
+                        {% for i in toot_attachment %}
+                            {% if forloop.first %}
+                                <img src="{{ i.url }}" alt="{{ i.description|default:i.name }}" loading="lazy">
+                            {% endif %}
+                        {% empty %}
+                            <div class="toot-no-image">
+                                <i class="fa-brands fa-mastodon"></i>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="toot-content">
+                    {% if toot_content %}
+                        <div class="toot-text">
+                            {% autoescape off %}
+                                {{ toot_content }}
+                            {% endautoescape %}
+                        </div>
+                        <div class="toot-meta">
+                            <span class="toot-date">{{ toot_date|default:"" }}</span>
+                            <a href="{{ toot_id }}" class="toot-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-solid fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="toot-empty">Keine Toots verfügbar</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     {% else %}
-        Keine Toots verfügbar
+        <div class="toot-empty">Keine Toots verfügbar</div>
     {% endif %}
-  </div>
-</div>
-
-{% else %}
-    Keine Toots verfügbar
-{% endif %}
-
 {% endblock %}

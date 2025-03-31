@@ -11,7 +11,7 @@ import requests
 import datetime
 
 
-def load_data(url, mensa_id):
+def load_data(url: str, mensa_id: str):
     """
     Get today's meals from a mensa of the student services in Tuebingen.
     The current mapping of the mensa IDs can be found under https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/.
