@@ -1,13 +1,19 @@
-FROM python:3-alpine
-ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
+FROM python:3.12-alpine
+
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /code
-ADD ./requirements.txt /code/
+
+COPY requirements.txt .
 
 RUN apk upgrade --update && \
-    apk add build-base libxml2-dev libxslt-dev jpeg-dev zlib-dev curl
+    apk add --no-cache build-base libxml2-dev libxslt-dev jpeg-dev zlib-dev curl && \
+    pip install --no-cache-dir -r requirements.txt && \
+    rm -rf /var/cache/apk/*
 
-ENV MAKEFLAGS="-j10"
-RUN pip install -r ./requirements.txt
+# Create and switch to non-root user
+RUN adduser -D appuser
+USER appuser
 
-ADD ./ /code/
+# Copy application code last
+COPY --chown=appuser:appuser . .
