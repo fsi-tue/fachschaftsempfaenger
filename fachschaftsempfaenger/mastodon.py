@@ -7,8 +7,8 @@ fsi_tue mastodon account
 
 """
 import json
+
 import requests
-import datetime
 
 
 def load_data(instance, username):
@@ -30,11 +30,11 @@ def load_data(instance, username):
     decoded_data = request.text.encode().decode('utf-8-sig')
     data = json.loads(decoded_data)['orderedItems']
 
-    last_toot = [ {'id':         toot['id'],
-                   'content':    toot['object']['content'],
-                   'attachment': toot['object']['attachment'] }
+    last_toot = [{'id': toot['id'],
+                  'content': toot['object']['content'],
+                  'attachment': toot['object']['attachment']}
                  for toot in data
                  if toot['type'] == 'Create' and
-                    not toot['object']['inReplyTo']][0]
+                 not toot['object']['inReplyTo']][0]
 
     return last_toot['id'], last_toot['content'], last_toot['attachment']

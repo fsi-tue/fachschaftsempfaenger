@@ -9,10 +9,9 @@ departures of buses.
 
 import requests
 from lxml import html
-from datetime import datetime, timedelta
 
 
-def get_departures(stop):
+def get_departures(stop: str):
     """
     Get the next departures from a certain bus stop.
 
@@ -24,8 +23,7 @@ def get_departures(stop):
         :rtype: list of tuple
     """
 
-    url = ('https://www.tuebus.de/vdfi-server/?stop='
-           '%s' % stop)
+    url = 'https://www.tuebus.de/vdfi-server/?stop={}'.format(stop)
 
     page = requests.get(url, stream=True)
     page.encoding = 'utf-8'

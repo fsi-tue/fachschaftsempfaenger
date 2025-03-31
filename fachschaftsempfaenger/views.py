@@ -1,22 +1,18 @@
-from datetime import datetime
 import json
+from datetime import datetime
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.utils import timezone
-from django.http import HttpResponse
-from django.template import loader
-
-import requests
 
 from fachschaftsempfaenger.models import Food, Menu, Advertisement, Member, Mastodon
-from . import calendar
-from . import weather
-from . import mensa
-from . import mastodon
-from . import bus
 from . import __author__ as author
 from . import __repository_url__ as repo_url
+from . import bus
+from . import calendar
+from . import mastodon
+from . import mensa
+from . import weather
 
 
 def sitzung_tile(request):
@@ -119,38 +115,48 @@ def weather_tile(request, use_kelvin=False):
     return render(request, 'tiles/weather.html', ctx)
 
 
-def mensa_morgenstelle_tile(request):
-    mensa_website = "http://www.my-stuwe.de/mensa/mensa-morgenstelle-tuebingen"
-    mensa_id = "621"
-    mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
+def mensa_tile(request, mensa_name: str):
+    mensa_name_id_map = {
+        "morgenstelle": {
+            "id": "621",
+            "path": "mensa-morgenstelle-tuebingen",
+            "name": "Morgenstelle"
+        },
+        "wilhelmstraße": {
+            "id": "611",
+            "path": "mensa-wilhelmstrasse-tuebingen",
+            "name": "Wilhelmstraße"
+        },
+        "prinz_karl": {
+            "id": "611",
+            "path": "mensa-prinz-karl-tuebingen",
+            "name": "Prinz Karl"
+        }
+    }
+    mensa_data = mensa_name_id_map.get(mensa_name, mensa_name)
+    mensa_id = mensa_data["id"]
+    mensa_website = "https://www.my-stuwe.de/mensa/{}".format(mensa_data["path"])
+    mensa_json = "https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
 
     try:
         date_string, meals = mensa.load_data(mensa_json, mensa_id)
 
-        context = dict(meals=meals,
-                       link=mensa_website, date=date_string)
+        context = {
+            "meals": meals,
+            "link": mensa_website,
+            "date": date_string,
+            "name": mensa_data["name"]
+        }
     except BaseException as e:
         print("Error retrieving the Mensa plan!", e)
-        context = dict(meals=None, link=mensa_website, hidden=True)
+        context = {
+            "meals": None,
+            "link": mensa_website,
+            "date": None,
+            "name": mensa_data["name"]
+        }
 
-    return render(request, 'tiles/mensa_morgenstelle.html', context)
-
-
-def mensa_wilhelmstraße_tile(request):
-    mensa_website = "http://www.my-stuwe.de/mensa/mensa-wilhelmstraße"
-    mensa_id = "611"
-    mensa_json = "http://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(mensa_id)
-
-    try:
-        date_string, meals = mensa.load_data(mensa_json, mensa_id)
-
-        context = dict(meals=meals,
-                       link=mensa_website, date=date_string)
-    except BaseException as e:
-        print("Error retrieving the Mensa plan!", e)
-        context = dict(meals=None, link=mensa_website, hidden=True)
-
-    return render(request, 'tiles/mensa_wilhelmstraße.html', context)
+    return render(request, 'tiles/mensa.html', context)
 
 
 def mastodon_tile(request):
@@ -159,17 +165,27 @@ def mastodon_tile(request):
     Administration Backend.
     """
 
-    account = Mastodon.objects.filter(visible=True).first()
+    try:
+        account = Mastodon.objects.filter(visible=True).first()
 
-    username = account.username
-    instance = account.instance
+        username = account.username
+        instance = account.instance
 
-    profile = account.instance + "/@" + username
+    except BaseException as e:
+        print("Error retrieving the Mastodon account!", e)
+        username = None
+        instance = None
+
+    if username is None or instance is None:
+        username = "fsi_tue"
+        instance = "https://toot.kif.rocks"
+
+    profile = instance + "/@" + username
 
     try:
         toot_id, toot_content, toot_attachment = mastodon.load_data(instance, username)
 
-        context = dict(toot_id=toot_id.replace('activity','embed'),
+        context = dict(toot_id=toot_id.replace('activity', 'embed'),
                        toot_content=toot_content,
                        toot_attachment=toot_attachment,
                        toot_instance=instance,

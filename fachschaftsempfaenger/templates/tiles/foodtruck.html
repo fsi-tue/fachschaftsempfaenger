@@ -6,7 +6,7 @@
 </div>
     {% if menu and menu_date %}
         <span class="food_date">Mittwoch, {{ menu_date }}</span>
-        <table class="foodtable">
+        <table class="food_table">
         {%  for item in menu %}
             <tr>
             <td>{% if item.vegan %}<i class="fa fa-leaf" aria-hidden="true"></i>{% endif %}
