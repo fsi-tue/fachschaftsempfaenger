@@ -34,25 +34,46 @@ reimplement the submodules and views to your own needs.
 Workflow
 --------
 
+Forking and installing
+^^^^^^^^
+
 1. Fork this repository on Github. From here on we assume you successfully
    forked this repository to
    https://github.com/yourname/fachschaftsempfaenger.git
 
-2. Install *fachschaftsempfaenger* locally in development mode
+2. Setup *fachschaftsempfaenger* locally on your machine
 
 .. code:: bash
 
     git clone https://github.com/yourname/fachschaftsempfaenger.git
     cd fachschaftsempfaenger
-    python setup.py develop --user
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
 
-3. Create a django project structure on your machine with
+3. Migrate the database
+
+.. code:: bash
+    python manage.py migrate
+
+4. Create a superuser
+.. code:: bash
+    python manage.py createsuperuser
+
+5. Run the development server
+.. code:: bash
+    python manage.py runserver
+
+Create a Django project
+^^^^^^^^^^^^^^^^^^^^^^
+
+1. Create a django project structure on your machine with
 
 .. code:: bash
 
     django-admin startproject yourproject
 
-4. Add *fachschaftsempfaenger* to your ``INSTALLED_APPS`` in
+2. Add *fachschaftsempfaenger* to your ``INSTALLED_APPS`` in
    ``yourproject/mysite/settings.py``:
 
 .. code-block:: python
@@ -62,14 +83,17 @@ Workflow
        'fachschaftsempfaenger'
    ]
 
-5. Add code, tests or documentation.
+3. Add code, tests or documentation.
 
 .. note::
 
     If you are from another student union we recommend to reimplement all
     submodules to your own needs.
 
-6. Add and commit your changes.
+Contributing
+------------
+
+1. Add and commit your changes.
 
    .. code:: bash
 
@@ -80,13 +104,13 @@ Workflow
    link issues and commits together, and with phrase like "fixes #42" you can
    even close relevant issues automatically.
 
-7. Push your local changes to your fork:
+2. Push your local changes to your fork:
 
   .. code:: bash
 
       git push git@github.com:yourname/fachschaftsempfaenger.git
 
-8. If the changes you made are relevant for our project, feel free to submit a
+3. If the changes you made are relevant for our project, feel free to submit a
    Pull Request at https://github.com/yourname/fachschaftsempfaenger/pulls and
    click "New pull request" to submit your Pull Request to
    https://github.com/fsi-tue/fachschaftsempfaenger.
