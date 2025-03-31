@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fachschaftsempfaenger"
+version = "0.1.0"
+authors = [
+    {name = "FSI Tuebingen", email = "fsi@fsi.uni-tuebingen.de"},
+]
+description = "A digital signage system for the computer science student body"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/fsi-tue/fachschaftsempfaenger"
+
+[tool.setuptools]
+packages = ["fachschaftsempfaenger"]
+
+[project.optional-dependencies]
+docs = [
+    "sphinx>=1.4",
+    "sphinx_rtd_theme",
+]
