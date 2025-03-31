@@ -1,15 +1,13 @@
-version: '3'
-
 services:
   web:
     image: fsinf/fse:latest
     build: .
-    command:  python3 manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
       - ./static:/static
       - ./script.sh:/code/script.sh
     ports:
-            - "127.0.0.1:8000:8000"
+      - "127.0.0.1:8000:8000"
     restart:
       always
