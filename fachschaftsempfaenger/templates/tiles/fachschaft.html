@@ -2,18 +2,20 @@
 {% load static %}
 
 {% block content %}
-<div class="col-item-header">
-  <i class="fa fa-info-circle"></i>Kenne deine Fachschaft
-</div>
-    {% if person.image %}
-        <div id="person-image" style="background-image: url({{ person.image.url }})">
+    <div class="col-item-header">
+        <i class="fa fa-info-circle"></i>Kenne deine Fachschaft
+    </div>
+    <div>
+        {% if person.image and person.image.url %}
+            <div id="person-image" style="background-image: url({{ person.image.url }})">
+            </div>
+        {% endif %}
+        <div id="person-text">
+            <span id="person-name">{{ person.first_name }}&nbsp;{{ person.last_name }}</span><br/>
+            Studiengang: {{ person.study }}<br/>
+            {% if person.committees %}
+                weitere Aktivitäten: {{ person.committees }}
+            {% endif %}
         </div>
-    {% endif %}
-    <div id="person-text">
-    <span id="person-name">{{ person.first_name }}&nbsp;{{ person.last_name }}</span><br />
-    Studiengang: {{ person.study }}<br />
-    {% if person.committees %}
-        weitere Aktivitäten: {{ person.committees }}
-    {% endif %}
     </div>
 {% endblock %}
