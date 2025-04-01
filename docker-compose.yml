@@ -1,50 +1,13 @@
 services:
   web:
-    image: fsinf/fachschaftsempfaenger:latest
-    build: /srv/data/fachschaftsempfaenger/git
-    command:  python3 manage.py runserver 0.0.0.0:8000
-    container_name: fse_django
+    image: fsinf/fse:latest
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
-      - /srv/data/fachschaftsempfaenger/git:/code
-      - /srv/data/fachschaftsempfaenger/git/static:/static
+      - .:/code
+      - ./static:/static
       - ./script.sh:/code/script.sh
     ports:
-      - "8000"
+      - "127.0.0.1:8000:8000"
     restart:
       always
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000"]
-      interval: 30s
-      timeout: 2s
-      retries: 2
-      start_period: 10s
-
-  nginx:
-    image: fsinf/nginx:latest
-    command: /usr/sbin/nginx -g 'daemon off;'
-    container_name: fse_nginx
-    ports:
-      - "134.2.220.61:8600:443"
-    volumes:
-      - /srv/data/fachschaftsempfaenger/git/fachschaftsempfaenger/static/:/static/
-      - /srv/data/fachschaftsempfaenger/git/fachschaftsempfaenger/static/media/:/media/
-      - /srv/docker-certificates/fachschaftsempfaenger.fsi.uni-tuebingen.de/:/etc/nginx/ssl:ro
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx-fse.conf:/etc/nginx/sites-enabled/nginx-fse.conf:ro
-      - /srv/docker/shared/nginx/:/etc/nginx/shared/:ro
-    restart: always
-    networks:
-      backend:
-        ipv4_address: 10.0.4.2
-    healthcheck:
-      test: ["CMD", "curl", "-f", "--resolve", "fachschaftsempfaenger.fsi.uni-tuebingen.de:443:134.2.220.61", "https://fachschaftsempfaenger.fsi.uni-tuebingen.de/_nginx_health"]
-      interval: 30s
-      timeout: 2s
-      retries: 2
-      start_period: 10s
-
-networks:
-  backend:
-    ipam:
-      config:
-        - subnet: 10.0.4.0/24
