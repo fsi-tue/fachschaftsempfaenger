@@ -296,11 +296,11 @@ a:visited {
     /* For WebKit browsers (Chrome, Safari) */
 
     &::-webkit-scrollbar {
-        width: 6px;
+        display: none;
     }
 
     &::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
+        background-color: rgba(0, 0, 0, 0.1);
         border-radius: 3px;
     }
 
@@ -308,6 +308,10 @@ a:visited {
         background-color: rgba(255, 255, 255, 0.3);
         border-radius: 3px;
     }
+
+    /* For Firefox and other browsers */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 /* Make sure the headers are always visible */
@@ -467,7 +471,7 @@ a:visited {
     /* Custom scrollbar for WebKit browsers */
 
     &::-webkit-scrollbar {
-        width: 5px;
+        display: none;
     }
 
     &::-webkit-scrollbar-track {
@@ -479,6 +483,10 @@ a:visited {
         background-color: rgba(255, 255, 255, 0.2);
         border-radius: 3px;
     }
+
+    /* For Firefox and other browsers */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .toot-text {
@@ -658,6 +666,7 @@ a:visited {
     /* Already designed for dark mode, just ensuring certain elements work well */
     .col-item {
         background-color: rgba(30, 30, 50, 0.8);
+        color: #ffffff;
     }
 }
 
