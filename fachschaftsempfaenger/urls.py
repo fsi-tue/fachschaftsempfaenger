@@ -1,4 +1,3 @@
-from django.urls import path
 from django.urls import re_path
 
 from . import views
@@ -14,5 +13,5 @@ urlpatterns = [
     re_path(r'^tiles/advertisement\.html$', views.advertisement_tile),
     re_path(r'^tiles/fachschaft\.html$', views.fachschaft_tile),
     re_path(r'^tiles/mastodon\.html$', views.mastodon_tile),
-    path('', views.index),
+    re_path(r'^$', views.index),
 ]
