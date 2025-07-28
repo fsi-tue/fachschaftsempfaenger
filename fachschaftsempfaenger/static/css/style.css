@@ -185,6 +185,7 @@ body {
 .dashboard-item {
     backdrop-filter: blur(5px);
     background-color: var(--primary-dark);
+    color: white;
     border-radius: var(--border-radius);
     border: var(--border);
     padding: 1rem;
