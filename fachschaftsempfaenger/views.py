@@ -132,10 +132,15 @@ def mensa_tile(request, mensa_name: str):
             "path": "mensa-morgenstelle-tuebingen",
             "name": "Morgenstelle",
         },
-        "wilhelmstraße": {
+        "mensa_wilhelmstraße": {
             "id": "611",
             "path": "mensa-wilhelmstrasse-tuebingen",
-            "name": "Wilhelmstraße",
+            "name": "Mensa Wilhelmstraße",
+        },
+        "cafe_wilhelmstraße": {
+            "id": "715",
+            "path": "cafe-wilhelmstrasse-tuebingen",
+            "name": "Cafeteria Wilhelmstraße",
         },
         "prinz_karl": {
             "id": "611",
@@ -143,7 +148,7 @@ def mensa_tile(request, mensa_name: str):
             "name": "Prinz Karl",
         },
     }
-    mensa_data = mensa_name_id_map.get(mensa_name, mensa_name)
+    mensa_data = mensa_name_id_map.get(mensa_name)
     mensa_id = mensa_data["id"]
     mensa_website = "https://www.my-stuwe.de/mensa/{}".format(mensa_data["path"])
     mensa_json = "https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(
