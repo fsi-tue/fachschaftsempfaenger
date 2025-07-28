@@ -132,7 +132,10 @@
 		}
 
 		// Set up all tiles
-		tiles.forEach(setupTile);
+		Promise.all(tiles.map(tile => setupTile(tile)))
+			.then(() => {
+				startAutoScroll();
+			});
 	});
 </script>
 <script>
@@ -153,6 +156,36 @@
 		updateClock();
 		setInterval(updateClock, 1000);
 	});
+</script>
+<script>
+	function startAutoScroll() {
+		let containers = document.querySelectorAll('.auto-scroll');
+
+		containers.forEach(container => {
+			// Skip if already has autoscroll
+			if (container.dataset.autoscroll) return;
+			container.dataset.autoscroll = 'true';
+
+			let direction = 1;
+			let isPaused = false;
+
+			setInterval(() => {
+				if (isPaused) return; // Skip scrolling during pause
+
+				container.scrollTop += direction * 2;
+
+				if (container.scrollTop >= container.scrollHeight - container.clientHeight || container.scrollTop <= 0) {
+					direction *= -1; // Change direction
+					isPaused = true; // Start pause
+
+					setTimeout(() => {
+						isPaused = false; // Resume after 3 seconds
+					}, 3000);
+				}
+			}, 50);
+		});
+	}
+
 </script>
 </body>
 </html>
