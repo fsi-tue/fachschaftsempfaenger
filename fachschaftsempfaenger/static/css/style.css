@@ -43,6 +43,10 @@ html, body {
     color: var(--text-color);
 }
 
+@media (max-width: 1200px) {
+    font-size: 14px;
+}
+
 body {
     background: var(--primary-white);
     color: var(--text-color);
@@ -93,12 +97,24 @@ body {
 
 /* Dashboard */
 .dashboard {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 16px;
     padding: 16px;
-    min-height: 90vh;
-    box-sizing: border-box;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 7fr;
+    grid-template-areas:
+            "bus"
+            "mensa1"
+            "mensa2"
+            "mensa3"
+            "cafe2"
+            "mastodon"
+            "fachschaft"
+            "calendar";
 }
 
 /* Tablet layout */
@@ -109,14 +125,16 @@ body {
         grid-template-areas:
             "mensa1 mensa2"
             "mensa3 cafe2"
-            "bus bus"
+            "bus calendar"
             "mastodon fachschaft";
     }
 }
 
 /* Desktop layout */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
     .dashboard {
+        height: 90vh;
+
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas:
@@ -176,7 +194,7 @@ body {
     transition: var(--transition);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
     .dashboard-tile {
         overflow: hidden;
     }
@@ -547,7 +565,7 @@ tr:nth-child(even) {
     width: auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
     body {
         overflow-y: auto;
     }
