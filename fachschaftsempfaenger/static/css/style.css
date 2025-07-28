@@ -13,6 +13,7 @@
     --primary: #000080; /* FSI Tübingen main color */
     --primary-light: #5757f6;
     --primary-dark: #00004d;
+    --primary-white: #e6e6f3;
 
     --text-color: #00004d;
     --text-color-light: white;
@@ -20,17 +21,6 @@
     /* Accent colors */
     --accent: #3498db;
     --accent-secondary: #27ae60;
-
-    /* Gray scale */
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --gray-800: #343a40;
-    --gray-900: #212529;
 
     /* Effects */
     --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -54,7 +44,7 @@ html, body {
 }
 
 body {
-    background: linear-gradient(346deg,rgba(255, 255, 255, 1) 0%, rgba(9, 9, 121, 1) 71%, rgba(0, 0, 77, 1) 100%);
+    background: var(--primary-white);
     color: var(--text-color);
     overflow: hidden;
 }
@@ -101,18 +91,39 @@ body {
     font-weight: 500;
 }
 
-/* Dashboard/Main Content */
+/* Dashboard */
 .dashboard {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas:
-        "mensa1 mensa2 mensa3 bus"
-        "mensa1 cafe2 mensa3 bus"
-        "mastodon mastodon fachschaft bus";
+    display: flex;
+    flex-direction: column;
     gap: 16px;
-    height: 100vh;
     padding: 16px;
+    min-height: 90vh;
+    box-sizing: border-box;
+}
+
+/* Tablet layout */
+@media (min-width: 768px) {
+    .dashboard {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "mensa1 mensa2"
+            "mensa3 cafe2"
+            "bus bus"
+            "mastodon fachschaft";
+    }
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "mensa1 mensa2 mensa3 bus"
+            "mensa1 cafe2 mensa3 bus"
+            "mastodon mastodon fachschaft calendar";
+    }
 }
 
 /* Grid area assignments */
@@ -140,14 +151,16 @@ body {
     grid-area: mastodon;
 }
 
+#calendar {
+    grid-area: calendar;
+}
+
 #fachschaft {
     grid-area: fachschaft;
 }
 
 .dashboard-tile {
-    min-height: 0;
     flex: 1;
-    overflow: hidden;
 }
 
 /* Tile Content Styles */
@@ -158,10 +171,19 @@ body {
     border: var(--border);
     padding: 1rem;
     height: 100%;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: var(--transition);
+}
+
+@media (min-width: 1024px) {
+    .dashboard-tile {
+        overflow: hidden;
+    }
+
+    .dashboard-item {
+        overflow: hidden;
+    }
 }
 
 .dashboard-item-header {
@@ -266,7 +288,7 @@ tr {
 }
 
 tr:nth-child(even) {
-    background-color: white;
+    background-color: var(--primary-white);
     color: var(--primary-dark)
 }
 
@@ -274,7 +296,7 @@ tr:nth-child(even) {
 .site-footer {
     height: var(--footer-height);
     background-color: rgba(0, 0, 128, 0.9);
-    color: var(--text-color);
+    color: white;
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
@@ -525,13 +547,6 @@ tr:nth-child(even) {
     width: auto;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 1200px) {
-    .dashboard {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media screen and (max-width: 768px) {
     body {
         overflow-y: auto;
@@ -540,16 +555,6 @@ tr:nth-child(even) {
     .page-container {
         height: auto;
         min-height: 100vh;
-    }
-
-    .dashboard {
-        grid-template-columns: 1fr;
-        height: auto;
-        overflow-y: visible;
-    }
-
-    .dashboard-column {
-        overflow: initial;
     }
 
     .site-header {
@@ -576,23 +581,6 @@ tr:nth-child(even) {
     .footer-info,
     .footer-copyright {
         text-align: center;
-    }
-
-    /* Height classes for mobile */
-    .height1 {
-        min-height: 200px;
-    }
-
-    .height2 {
-        min-height: 300px;
-    }
-
-    .height3 {
-        min-height: 400px;
-    }
-
-    .height4 {
-        min-height: 500px;
     }
 }
 
