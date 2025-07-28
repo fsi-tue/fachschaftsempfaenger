@@ -46,10 +46,12 @@
     <main class="dashboard">
         <section id="mensa_morgenstelle" class="dashboard-tile" aria-label="Mensa Morgenstelle"></section>
         <section id="mensa_wilhelmstraße" class="dashboard-tile" aria-label="Mensa Wilhelmstraße"></section>
-        <section id="cafe_wilhelmstraße" class="dashboard-tile" aria-label="Cafeteria Wilhelmstraße"></section>
+        <section id="cafe_wilhelmstraße" class="dashboard-tile"
+                 aria-label="Cafeteria Wilhelmstraße"></section>
         <section id="mensa_prinz_karl" class="dashboard-tile" aria-label="Mensa Prinz Karl"></section>
         <section id="bus" class="dashboard-tile" aria-label="Busfahrplan"></section>
         <section id="mastodon" class="dashboard-tile" aria-label="Mastodon"></section>
+        <section id="fachschaft" class="dashboard-tile" aria-label="Kenne deine Fachschaft"></section>
         <section id="calendar" class="dashboard-tile" aria-label="Fachschaftstermine"></section>
     </main>
 
@@ -75,16 +77,16 @@
 	document.addEventListener('DOMContentLoaded', () => {
 		// Configuration array for all tiles
 		const tiles = [
-			{id: 'mensa_morgenstelle', url: '/tiles/mensa/morgenstelle.html', timeout: 4320, height: 1, color: 'purple'},
-			{id: 'mensa_wilhelmstraße', url: '/tiles/mensa/mensa_wilhelmstraße.html', timeout: 4320, height: 1, color: 'purple'},
-            {id: 'cafe_wilhelmstraße', url: '/tiles/mensa/cafe_wilhelmstraße.html', timeout: 4320, height: 1, color: 'purple'},
-			{id: 'mensa_prinz_karl', url: '/tiles/mensa/prinz_karl.html', timeout: 4320, height: 1, color: 'purple'},
-			{id: 'bus', url: '/tiles/bus.html', timeout: 30, height: 2, color: 'orange'},
-			{id: 'sitzung', url: '/tiles/sitzung.html', timeout: 5000, height: 1, color: 'red'},
-			{id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, height: 2, color: 'red'},
-			// {id: 'advertisement', url: '/tiles/advertisement.html', timeout: 300, height: 2, color: 'darkgrey'},
-			// {id: 'fachschaft', url: '/tiles/fachschaft.html', timeout: 300, height: 1, color: 'blue'},
-			{id: 'mastodon', url: '/tiles/mastodon.html', timeout: 300, height: 3, color: 'mastodon-dark'}
+			{id: 'mensa_morgenstelle', url: '/tiles/mensa/morgenstelle.html', timeout: 4320, color: 'purple'},
+			{id: 'mensa_wilhelmstraße', url: '/tiles/mensa/mensa_wilhelmstraße.html', timeout: 4320, color: 'purple'},
+			{id: 'cafe_wilhelmstraße', url: '/tiles/mensa/cafe_wilhelmstraße.html', timeout: 4320, color: 'purple'},
+			{id: 'mensa_prinz_karl', url: '/tiles/mensa/prinz_karl.html', timeout: 4320, color: 'purple'},
+			{id: 'bus', url: '/tiles/bus.html', timeout: 30, color: 'orange'},
+			{id: 'sitzung', url: '/tiles/sitzung.html', timeout: 5000, color: 'red'},
+			{id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, color: 'red'},
+			// {id: 'advertisement', url: '/tiles/advertisement.html', timeout: 300, color: 'darkgrey'},
+			{id: 'fachschaft', url: '/tiles/fachschaft.html', timeout: 300, color: 'blue'},
+			{id: 'mastodon', url: '/tiles/mastodon.html', timeout: 300, color: 'mastodon-dark'}
 		];
 
 		// Function to fetch HTML for a tile
@@ -115,7 +117,6 @@
 					const tileContent = element.querySelector('.dashboard-item');
 					if (tileContent) {
 						tileContent.classList.add(tile.color);
-						element.classList.add(`height${tile.height}`);
 					}
 				} catch (error) {
 					console.warn(`Failed updating tile '${tile.id}': ${error}`);
