@@ -44,31 +44,15 @@
     </header>
 
     <main class="dashboard">
-        <!-- Column 1 -->
-        <div class="dashboard-column">
-            <section id="mensa_morgenstelle" class="dashboard-tile" aria-label="Mensa Morgenstelle"></section>
-            <section id="mensa_wilhelmstraße" class="dashboard-tile" aria-label="Mensa Wilhelmstraße"></section>
-            <!-- <section id="mensa_prinz_karl" class="dashboard-tile" aria-label="Mensa Prinz Karl"></section> -->
-        </div>
-
-        <!-- Column 2 -->
-        <div class="dashboard-column">
-            <section id="fachschaft" class="dashboard-tile" aria-label="Fachschaft"></section>
-            <section id="mastodon" class="dashboard-tile" aria-label="Mastodon"></section>
-        </div>
-
-        <!-- Column 3 -->
-        <div class="dashboard-column">
-            <section id="calendar" class="dashboard-tile" aria-label="Kalender"></section>
-            <section id="sitzung" class="dashboard-tile" aria-label="Sitzungen"></section>
-        </div>
-
-        <!-- Column 4 -->
-        <div class="dashboard-column">
-            <section id="bus" class="dashboard-tile" aria-label="Busfahrplan"></section>
-            <section id="advertisement" class="dashboard-tile" aria-label="Ankündigungen"></section>
-        </div>
+        <section id="mensa_morgenstelle" class="dashboard-tile" aria-label="Mensa Morgenstelle"></section>
+        <section id="mensa_wilhelmstraße" class="dashboard-tile" aria-label="Mensa Wilhelmstraße"></section>
+        <section id="cafe_wilhelmstraße" class="dashboard-tile" aria-label="Cafeteria Wilhelmstraße"></section>
+        <section id="mensa_prinz_karl" class="dashboard-tile" aria-label="Mensa Prinz Karl"></section>
+        <section id="bus" class="dashboard-tile" aria-label="Busfahrplan"></section>
+        <section id="mastodon" class="dashboard-tile" aria-label="Mastodon"></section>
+        <section id="calendar" class="dashboard-tile" aria-label="Fachschaftstermine"></section>
     </main>
+
 
     {% if copyright and repo_url %}
         <footer class="site-footer">
@@ -92,13 +76,14 @@
 		// Configuration array for all tiles
 		const tiles = [
 			{id: 'mensa_morgenstelle', url: '/tiles/mensa/morgenstelle.html', timeout: 4320, height: 1, color: 'purple'},
-			{id: 'mensa_wilhelmstraße', url: '/tiles/mensa/wilhelmstraße.html', timeout: 4320, height: 1, color: 'purple'},
-			// {id: 'mensa_prinz_karl', url: '/tiles/mensa/prinz_karl.html', timeout: 4320, height: 1, color: 'purple'},
+			{id: 'mensa_wilhelmstraße', url: '/tiles/mensa/mensa_wilhelmstraße.html', timeout: 4320, height: 1, color: 'purple'},
+            {id: 'cafe_wilhelmstraße', url: '/tiles/mensa/cafe_wilhelmstraße.html', timeout: 4320, height: 1, color: 'purple'},
+			{id: 'mensa_prinz_karl', url: '/tiles/mensa/prinz_karl.html', timeout: 4320, height: 1, color: 'purple'},
 			{id: 'bus', url: '/tiles/bus.html', timeout: 30, height: 2, color: 'orange'},
 			{id: 'sitzung', url: '/tiles/sitzung.html', timeout: 5000, height: 1, color: 'red'},
 			{id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, height: 2, color: 'red'},
-			{id: 'advertisement', url: '/tiles/advertisement.html', timeout: 300, height: 2, color: 'darkgrey'},
-			{id: 'fachschaft', url: '/tiles/fachschaft.html', timeout: 300, height: 1, color: 'blue'},
+			// {id: 'advertisement', url: '/tiles/advertisement.html', timeout: 300, height: 2, color: 'darkgrey'},
+			// {id: 'fachschaft', url: '/tiles/fachschaft.html', timeout: 300, height: 1, color: 'blue'},
 			{id: 'mastodon', url: '/tiles/mastodon.html', timeout: 300, height: 3, color: 'mastodon-dark'}
 		];
 
@@ -127,7 +112,7 @@
 					element.innerHTML = content;
 
 					// Apply tile-specific classes
-					const tileContent = element.querySelector('.col-item');
+					const tileContent = element.querySelector('.dashboard-item');
 					if (tileContent) {
 						tileContent.classList.add(tile.color);
 						element.classList.add(`height${tile.height}`);

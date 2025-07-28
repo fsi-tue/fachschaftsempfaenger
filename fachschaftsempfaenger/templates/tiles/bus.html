@@ -1,28 +1,37 @@
 {% extends 'tiles/tile.html' %}
 
 {% block content %}
-<div class="col-item-header" id="bus-header">
-  <i class="fa fa-bus"></i>Sand Drosselweg
-</div>
-<div>
-    <table>
+    <div class="dashboard-item-header" id="bus-header">
+        <i class="fa fa-bus"></i>Sand Drosselweg
+    </div>
+    <div class="table_container">
         {% if events %}
-		{% for event in events %}
-        <tr>
-            <td>
-                <strong>{{event.0}}</strong>
-            </td>
-            <td>
-                <strong>{{event.1}} &nbsp;</strong>
-            </td>
-            <td>{{event.2}}</td>
-        </tr>
-        {% endfor %}
+            <table class="bus_table">
+                <thead>
+                <tr>
+                    <th>Zeit</th>
+                    <th>Nummer</th>
+                    <th>Richtung</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td>
+                            <strong>{{ event.0 }}</strong>
+                        </td>
+                        <td>
+                            <strong>{{ event.1 }}</strong>
+                        </td>
+                        <td>{{ event.2 }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         {% else %}
-        <div>
-            <i>Keine Verkehrsmittel</i>
-        </div>
-        {% endif%}
-    </table>
-</div>
+            <div>
+                <i>Keine Verkehrsmittel</i>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
