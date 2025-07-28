@@ -6,7 +6,6 @@ from django.shortcuts import render
 from django.utils import timezone
 
 from fachschaftsempfaenger.models import Advertisement, Food, Mastodon, Member, Menu
-
 from . import __author__ as author
 from . import __repository_url__ as repo_url
 from . import bus, calendar, mastodon, mensa, weather
@@ -33,9 +32,9 @@ def sitzung_tile(request):
             # item = (date, time, title, location)
             title = str(event[2]).lower().strip()
             if (
-                title.endswith("sitzung")
-                and datetime.strptime(event[0], "%d.%m.%Y").date()
-                >= datetime.today().date()
+                    title.endswith("sitzung")
+                    and datetime.strptime(event[0], "%d.%m.%Y").date()
+                    >= datetime.today().date()
             ):
                 if title.startswith("fsi") and not info:
                     info = dict(date=event[0], time=event[1], location=event[3])
@@ -128,42 +127,70 @@ def weather_tile(request, use_kelvin=False):
 def mensa_tile(request, mensa_name: str):
     mensa_name_id_map = {
         "morgenstelle": {
-            "id": "621",
-            "path": "mensa-morgenstelle-tuebingen",
-            "name": "Morgenstelle",
+            "name": "Mensa Morgenstelle",
+            "items": [
+                {
+                    "type": "mensa",
+                    "id": "621",
+                    "path": "mensa-morgenstelle-tuebingen",
+                },
+                {
+                    "type": "cafe",
+                    "id": "724",
+                    "path": "cafeteria-morgenstelle-tuebingen"
+                }
+            ]
         },
-        "mensa_wilhelmstraße": {
-            "id": "611",
-            "path": "mensa-wilhelmstrasse-tuebingen",
+        "wilhelmstrasse": {
             "name": "Mensa Wilhelmstraße",
-        },
-        "cafe_wilhelmstraße": {
-            "id": "715",
-            "path": "cafe-wilhelmstrasse-tuebingen",
-            "name": "Cafeteria Wilhelmstraße",
+            "items": [
+                {
+                    "type": "mensa",
+                    "id": "611",
+                    "path": "mensa-wilhelmstrasse-tuebingen",
+                },
+                {
+                    "type": "cafe",
+                    "id": "715",
+                    "path": "cafe-wilhelmstrasse-tuebingen",
+                }]
         },
         "prinz_karl": {
-            "id": "611",
-            "path": "mensa-prinz-karl-tuebingen",
-            "name": "Prinz Karl",
+            "name": "Mensa Prinz Karl",
+            "items": [
+                {
+                    "type": "mensa",
+                    "id": "623",
+                    "path": "mensa-prinz-karl-tuebingen",
+                }
+            ]
         },
     }
+    # Get the data from the dictionary
     mensa_data = mensa_name_id_map.get(mensa_name)
-    mensa_id = mensa_data["id"]
-    mensa_website = "https://www.my-stuwe.de/mensa/{}".format(mensa_data["path"])
-    mensa_json = "https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(
-        mensa_id
-    )
+
+    mensa_date = ""
+    mensa_website = ""
+    all_meals = []
+    for item in mensa_data["items"]:
+
+        item_id = item["id"]
+        item_json = "https://www.my-stuwe.de/wp-json/mealplans/v1/canteens/{}".format(item_id)
+        date_string, meals = mensa.load_data(item_json, item_id)
+        all_meals.extend(meals)
+
+        if item["type"] == "mensa":
+            mensa_website = "https://www.my-stuwe.de/mensa/{}".format(item["path"])
+            mensa_date = date_string
 
     try:
-        date_string, meals = mensa.load_data(mensa_json, mensa_id)
-
         context = {
-            "meals": meals,
+            "meals": all_meals,
             "link": mensa_website,
-            "date": date_string,
+            "date": mensa_date,
             "name": mensa_data["name"],
         }
+
     except BaseException as e:
         print("Error retrieving the Mensa plan!", e)
         context = {
@@ -255,7 +282,7 @@ def advertisement_tile(request):
     # Are there any messages to be displayed right now? If there are, select one at random.
     # Note that this query is quite expensive and could potentially slow the load time of this tile down.
     if Advertisement.objects.filter(
-        start_date__lte=timezone.now(), end_date__gte=timezone.now()
+            start_date__lte=timezone.now(), end_date__gte=timezone.now()
     ):
         qs = (
             Advertisement.objects.filter(
