@@ -77,7 +77,7 @@
 		const tiles = [
 			{id: 'mensa_morgenstelle', url: '/tiles/mensa/morgenstelle.html', timeout: 4320, color: 'purple'},
 			{id: 'mensa_wilhelmstraße', url: '/tiles/mensa/wilhelmstrasse.html', timeout: 4320, color: 'purple'},
-			{id: 'mensa_prinz_karl', url: '/tiles/mensa/prinz_karl.html', timeout: 4320, color: 'purple'},
+			// {id: 'mensa_prinz_karl', url: '/tiles/mensa/prinz_karl.html', timeout: 4320, color: 'purple'},
 			{id: 'bus', url: '/tiles/bus.html', timeout: 30, color: 'orange'},
 			{id: 'sitzung', url: '/tiles/sitzung.html', timeout: 5000, color: 'red'},
 			{id: 'calendar', url: '/tiles/calendar.html', timeout: 5000, color: 'red'},
@@ -158,30 +158,85 @@
 <script>
 	function startAutoScroll() {
 		let containers = document.querySelectorAll('.auto-scroll');
+		const activeScrollers = new WeakMap();
 
 		containers.forEach(container => {
-			// Skip if already has autoscroll
-			if (container.dataset.autoscroll) return;
-			container.dataset.autoscroll = 'true';
+			initializeScroller(container);
+		});
+
+		// Watch for DOM changes and reinitialize affected scrollers
+		const observer = new MutationObserver((mutations) => {
+			mutations.forEach((mutation) => {
+				mutation.addedNodes.forEach((node) => {
+					if (node.nodeType === 1) { // Element node
+						// Check if the added node or its children have auto-scroll class
+						if (node.classList && node.classList.contains('auto-scroll')) {
+							initializeScroller(node);
+						}
+						const newScrollers = node.querySelectorAll('.auto-scroll');
+						newScrollers.forEach(scroller => initializeScroller(scroller));
+					}
+				});
+			});
+		});
+
+		// Observe the entire dashboard for changes
+		const dashboard = document.querySelector('.dashboard');
+		if (dashboard) {
+			observer.observe(dashboard, {
+				childList: true,
+				subtree: true
+			});
+		}
+
+		function initializeScroller(container) {
+			// Skip if already initialized
+			if (activeScrollers.has(container)) return;
 
 			let direction = 1;
 			let isPaused = false;
+			let lastTime = performance.now();
+			let animationId = null;
+			const scrollSpeed = 40;
+			const pauseDuration = 3000;
+			let pauseStartTime = 0;
 
-			setInterval(() => {
-				if (isPaused) return; // Skip scrolling during pause
+			function scroll(currentTime) {
+				if (isPaused) {
+					if (currentTime - pauseStartTime >= pauseDuration) {
+						isPaused = false;
+					}
+				} else {
+					const deltaTime = currentTime - lastTime;
+					const scrollAmount = (scrollSpeed * deltaTime) / 1000 * direction;
 
-				container.scrollTop += direction * 2;
+					container.scrollTop += scrollAmount;
 
-				if (container.scrollTop >= container.scrollHeight - container.clientHeight || container.scrollTop <= 0) {
-					direction *= -1; // Change direction
-					isPaused = true; // Start pause
-
-					setTimeout(() => {
-						isPaused = false; // Resume after 3 seconds
-					}, 3000);
+					if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
+						direction = -1;
+						isPaused = true;
+						pauseStartTime = currentTime;
+						container.scrollTop = container.scrollHeight - container.clientHeight;
+					} else if (container.scrollTop <= 0) {
+						direction = 1;
+						isPaused = true;
+						pauseStartTime = currentTime;
+						container.scrollTop = 0;
+					}
 				}
-			}, 50);
-		});
+
+				lastTime = currentTime;
+				animationId = requestAnimationFrame(scroll);
+			}
+
+			animationId = requestAnimationFrame(scroll);
+
+			// Store reference to cancel if needed
+			activeScrollers.set(container, {
+				animationId,
+				cancel: () => cancelAnimationFrame(animationId)
+			});
+		}
 	}
 
 </script>
