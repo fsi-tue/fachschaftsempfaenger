@@ -25,21 +25,25 @@ def load_data(url: str, mensa_id: str):
         :rtype: tuple of str and list of str
     """
 
-    request = requests.get(url)
-    decoded_data = request.text.encode().decode('utf-8-sig')
-    data = json.loads(decoded_data)[mensa_id]
-
+    # Prepare date
     today = datetime.date.today().strftime("%Y-%m-%d")
-
+    today_string = 'Heute ' + datetime.date.today().strftime("%d.%m.%Y")
     if datetime.datetime.now().hour > 15:
         today = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+        today_string = 'Morgen ' + (datetime.date.today() + datetime.timedelta(days=1)).strftime("%d.%m.%Y")
 
+    # Fetch the mensa data
+    request = requests.get(url)
+    decoded_data = request.text.encode().decode('utf-8-sig')
+    data = json.loads(decoded_data)
+
+    # If the data is empty or it's not a dictionary, return an empty list
+    if data is None or (data is not None and not isinstance(data, dict)):
+        return today_string, []
+
+    # Process the mensa data
+    data = data.get(mensa_id)
     meals = [(", ".join(menu["menu"]), menu["studentPrice"] + " €")
              for menu in data["menus"] if menu["menuDate"] == today]
 
-    today = 'Heute ' + datetime.date.today().strftime("%d.%m.%Y")
-
-    if datetime.datetime.now().hour > 15:
-        today = 'Morgen ' + (datetime.date.today() + datetime.timedelta(days=1)).strftime("%d.%m.%Y")
-
-    return today, meals
+    return today_string, meals
