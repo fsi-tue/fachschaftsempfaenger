@@ -1,6 +1,6 @@
 asgiref==3.8.1
 certifi==2025.10.5
-charset-normalizer==3.4.3
+charset-normalizer==3.4.4
 Django==4.2.26
 icalendar==6.3.2
 idna==3.10
