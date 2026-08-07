@@ -5,7 +5,7 @@ Django==4.2.30
 icalendar==6.3.2
 idna==3.18
 lxml==6.0.2
-Pillow==11.3.0
+Pillow==12.3.0
 python-dateutil==2.9.0.post0
 pytz==2025.2
 requests==2.32.5
