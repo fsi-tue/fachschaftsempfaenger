@@ -362,6 +362,12 @@ tr:nth-child(even) {
     font-size: 1.1em;
 }
 
+.bus_table tr.cancelled {
+    color: #999;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
 /* Calendar Styling */
 #calendar tr td:first-child {
     width: 25%;
