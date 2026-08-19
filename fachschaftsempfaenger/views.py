@@ -79,7 +79,7 @@ def calendar_tile(request):
 def bus_tile(request):
     stopid = "de:08416:10252:0:4"
     url = "https://www.swtue.de/abfahrt.html?halt={}".format(stopid)
-    events = bus.get_departures(stopid)
+    events = bus.get_departures(stopid, departures=10)
 
     return render(request, "tiles/bus.html", dict(events=events, link=url))
 

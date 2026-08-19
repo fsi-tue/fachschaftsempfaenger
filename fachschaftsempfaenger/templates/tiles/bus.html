@@ -16,14 +16,14 @@
                 </thead>
                 <tbody>
                 {% for event in events %}
-                    <tr>
+                    <tr{% if event.cancelled %} class="cancelled"{% endif %}>
                         <td>
-                            <strong>{{ event.0 }}</strong>
+                            <strong>{{ event.time_format }}</strong>
                         </td>
                         <td>
-                            <strong>{{ event.1 }}</strong>
+                            <strong>{{ event.line }}</strong>
                         </td>
-                        <td>{{ event.2 }}</td>
+                        <td>{{ event.destination }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -7,47 +7,89 @@ departures of buses.
 
 """
 
+import json
+import time
+from dataclasses import dataclass
+
 import requests
-from lxml import html
+
+API_URL = "https://dfi.swtue.de/departure_board"
+
+class SSEDecodeError(Exception):
+    """Raised when parsing the SSE response fails."""
+
+@dataclass
+class Departure:
+    cancelled: bool
+    countdown_minutes: str
+    departure_time: str
+    destination: str
+    is_realtime: bool
+    line: str
+    platform: str
+
+    def time_format(self):
+        if not self.countdown_minutes.isnumeric():
+            return "-"
+        h = int(self.countdown_minutes) // 60
+        m = int(self.countdown_minutes) % 60
+        return f"{h}h {m}min" if h > 0 else f"{m}min"
 
 
-def get_departures(stop: str):
+def get_departures(stop_id: str = "de:08416:10252:0:4", departures=5, timespan=240):
     """
     Get the next departures from a certain bus stop.
 
     - **parameters**, **types**, **return** and **return types**::
-        :param stop: the busstop id of swtue
-        :type stop: int
-        :return: each departure consists of the time till the bus
-                           departs, the bus route and the destination of the bus.
-        :rtype: list of tuple
+        :param stop_id: the busstop id of swtue
+        :type stop_id: str
+        :return: each departure consists of the time till the bus departs, the bus route and the destination of the bus among other data.
+        :rtype: list of Departure
     """
 
-    url = 'https://www.tuebus.de/vdfi-server/?stop={}'.format(stop)
+    params = {"max_departures": departures, "timespan_minutes": timespan, "stop_id": stop_id}
 
-    page = requests.get(url, stream=True)
-    page.encoding = 'utf-8'
+    start_time = time.monotonic()
 
-    # Read the second line containing the information
-    for i, t in enumerate(page.iter_lines(decode_unicode=True, delimiter='\n')):
-        if i == 1:
-            page = t
-            break
+    try:
+        with requests.get(API_URL, params=params, stream=True, timeout=(5, 15)) as stream:
+            stream.encoding = 'utf-8'
+            lines = stream.iter_lines(decode_unicode=True, delimiter="\n")
+            data = None
+            for l in lines:
+                if time.monotonic() - start_time > 10:
+                    raise TimeoutError("Timeout: Server did not send a departures event in time.")
+                prefix, _, eventtype = l.partition(":")
+                if prefix.strip() == "event" and eventtype.strip() == "departures":
+                    try:
+                        data = next(lines)
+                    except StopIteration:
+                        raise SSEDecodeError("Stream got closed after event line without sending data")
+                    break
+    except requests.RequestException as e:
+        raise RuntimeError(f"Failed to fetch departures: {e}") from e
 
-    tree = html.fromstring(page)
+    if data is None:
+        raise SSEDecodeError("No departures event found in SSE response")
 
-    lines = []
-    destinations = []
-    times = []
+    prefix, _, payload = data.partition(":")
+    if prefix.strip() != "data":
+        raise SSEDecodeError(f"Unexpected data format: {data!r}")    
+    
+    try:
+        data = json.loads(payload.strip())
+    except json.JSONDecodeError as exc:
+        raise SSEDecodeError("Invalid JSON in departures event") from exc
 
-    header, *connections = zip(tree.find_class("line"),
-                               tree.find_class("destination"),
-                               tree.find_class("abfahrt"))
-
-    for line, destination, time in connections:
-        times.append(time.text_content().strip())
-        lines.append(line.text_content().strip())
-        line_destination = destination.text_content().strip()
-        destinations.append(line_destination)
-
-    return list(zip(times, lines, destinations))
+    return [
+        Departure(
+            dep.get("cancelled", False), 
+            dep.get("countdown_minutes", ""), 
+            dep.get("departure_time", ""), 
+            dep.get("destination", ""), 
+            dep.get("is_realtime", True), 
+            dep.get("line", ""), 
+            dep.get("platform", "")
+        ) 
+        for dep in data
+    ]
