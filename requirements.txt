@@ -1,5 +1,5 @@
 asgiref==3.12.1
-certifi==2026.7.22
+certifi==2026.10.23
 charset-normalizer==3.5.2
 Django==4.2.30
 icalendar==7.3.0
