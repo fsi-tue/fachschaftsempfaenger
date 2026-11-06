@@ -350,12 +350,30 @@ tr:nth-child(even) {
 }
 
 /* Bus Table */
-.bus_table table tr td:first-child {
+#bus_special_text {
+    margin: 0 0 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+}
+
+#bus_special_text:empty {
+    display: none;
+}
+
+.bus_status {
+    font-style: italic;
+}
+
+.bus_table.stale tbody {
+    opacity: 0.5;
+}
+
+.bus_table tr td:first-child {
     width: 20%;
     font-weight: 600;
 }
 
-.bus_table table tr td:nth-child(2) {
+.bus_table tr td:nth-child(2) {
     min-width: 50px;
     width: 20%;
     font-family: monospace;
