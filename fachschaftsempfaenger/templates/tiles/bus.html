@@ -5,21 +5,33 @@
         <i class="fa fa-bus"></i>Sand Drosselweg
     </div>
     <div class="table_container">
-        <div><p id="bus_special_text"></p></div>
-        <table class="bus_table">
-            <thead>
-            <tr>
-                <th>Zeit</th>
-                <th>Nummer</th>
-                <th>Richtung</th>
-            </tr>
-            </thead>
-            <tbody id="bus_table_body"
-                data-server-url="{{bus.server_url}}"
-                data-stop-id="{{bus.stop_id}}"
-                data-max-departures="{{bus.max_departures}}">
-                <tr class="bus_loading"><td colspan="3" class="bus_status">Lädt...</td></tr>
-            </tbody>
-        </table>
+        {% if events %}
+            <table class="bus_table">
+                <thead>
+                <tr>
+                    <th>Zeit</th>
+                    <th>Nummer</th>
+                    <th>Richtung</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                    <tr{% if event.cancelled %} class="cancelled"{% endif %}>
+                        <td>
+                            <strong>{{ event.time_format }}</strong>
+                        </td>
+                        <td>
+                            <strong>{{ event.line }}</strong>
+                        </td>
+                        <td>{{ event.destination }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div>
+                <i>Keine Verkehrsmittel</i>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

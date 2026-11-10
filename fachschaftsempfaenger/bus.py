@@ -5,8 +5,6 @@ bus.py
 ``bus.py`` contains the functionality to show upcoming
 departures of buses.
 
-Currently not used as this functionality is offloaded to the client in VdfiBus.js
-
 """
 
 import json
