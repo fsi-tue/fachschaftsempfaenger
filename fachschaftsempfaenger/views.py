@@ -8,7 +8,7 @@ from django.utils import timezone
 from fachschaftsempfaenger.models import Advertisement, Food, Mastodon, Member, Menu
 from . import __author__ as author
 from . import __repository_url__ as repo_url
-from . import calendar, mastodon, mensa, weather
+from . import bus, calendar, mastodon, mensa, weather
 
 
 def sitzung_tile(request):
@@ -77,17 +77,11 @@ def calendar_tile(request):
 
 
 def bus_tile(request):
-    stop_id = "de:08416:10252:0:4"
-    url = "https://www.swtue.de/abfahrt.html?halt={}".format(stop_id)
-    max_departures = 10
-    timespan_minutes = 180
-    server_url = f"https://dfi.swtue.de/departure_board?max_departures={max_departures}&timespan_minutes={timespan_minutes}"
+    stopid = "de:08416:10252:0:4"
+    url = "https://www.swtue.de/abfahrt.html?halt={}".format(stopid)
+    events = bus.get_departures(stopid, departures=10)
 
-    return render(request, "tiles/bus.html", dict(bus={
-        "server_url": server_url, 
-        "stop_id": stop_id, 
-        "max_departures": max_departures
-        }, link=url))
+    return render(request, "tiles/bus.html", dict(events=events, link=url))
 
 
 def forecast_tile(request):
